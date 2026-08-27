@@ -1,10 +1,10 @@
 # Aman's Travels — Project Notes
 
-Context for whoever picks this up next: where this came from, what's actually done, and what's still just scaffolding.
+Context for whoever picks this up next: where this came from, what's actually done, and what's still open.
 
 ## What this is
 
-A small mock personal travel blog/site for "Aman's Travels" — a static HTML single-page site with an about section, a placeholder posts list, and a photo gallery. It exists as a demo/testbed, not a production product with a real backend or CMS.
+A small personal travel site for "Aman's Travels" — a static HTML single-page site with an about section and a photo gallery. It started as a demo/testbed but is now moving toward something Aman actually uses (real photos, real contact info) rather than staying a pure mock.
 
 ## Where things stand
 
@@ -15,7 +15,7 @@ https://teredatrades.github.io/Amanstravels/
 No manual steps needed to publish — just push to `main` and the workflow builds and deploys.
 
 **Gallery photos — done (real photos, from Aman's actual trips).**
-`index.html` has an 8-photo gallery with `<picture>`/`srcset` markup already wired to specific filenames and alt text. The 8 photos now live in `assets/` as real images (sourced from Aman's own Snapchat memories, cropped to remove the app's UI chrome, EXIF-stripped, and exported at 1600/800/480px widths in both JPG and WebP):
+`index.html` has an 8-photo gallery with `<picture>`/`srcset` markup wired to specific filenames and alt text. The 8 photos live in `assets/` as real images (sourced from Aman's own Snapchat memories, cropped to remove the app's UI chrome, EXIF-stripped, and exported at 1600/800/480px widths in both JPG and WebP):
 
 - `photo1-botero` — Botero Museum, Bogotá (still-life painting)
 - `photo2-monserrate` — Camino Peatonal de Monserrate trail sign, Bogotá
@@ -28,21 +28,20 @@ No manual steps needed to publish — just push to `main` and the workflow build
 
 Untouched originals (post-crop, pre-resize) are kept in `assets/originals/` per the workflow `ASSETS_README.md` originally described.
 
-**Not yet done / open items:**
-- The "Recent posts" section (Udaipur, Western Ghats, Delhi street food) is still placeholder text with no real content or linked pages — `#` links go nowhere.
-- The "Snapshot" aside under About still points at `assets/sample-photo.jpg`, a leftover placeholder — not one of the 8 real gallery photos.
-- No contact form is wired up (`#contact` section says as much — suggests Formspree or Netlify Forms as options, neither set up).
-- No custom domain — currently only on the default `teredatrades.github.io/Amanstravels` URL.
-- Extra travel photos exist from the same photo drop (Sky Tower/Big Ben replica and building exterior in Macau, a Luxembourg rooftop view) that don't correspond to any of the 8 gallery slots — not used anywhere yet, but available if the gallery expands.
+**About "Snapshot" image — done.** Now uses the real `photo6-mirador-norte` gallery photo instead of the old dangling `assets/sample-photo.jpg` placeholder (that file never actually existed in the repo).
 
-## Where we might go next
+**Recent posts section — dropped.** The placeholder posts (Udaipur, Western Ghats, Delhi street food) had no real content and their `#` links went nowhere, so the whole section and its nav link were removed rather than kept as placeholders. Add it back if/when there's real post content to publish.
 
-Natural next steps, roughly in order of effort:
-1. Swap the About "Snapshot" placeholder image for a real photo.
-2. Turn the 3 placeholder posts into either real short write-ups or drop the section until there's real content.
-3. Decide if this stays a pure demo (in which case a "mock site" badge and placeholder contact section are fine as-is) or becomes something Aman actually uses (in which case: real contact form, maybe a custom domain, maybe more photos from the unused extras).
+**Contact — done, simple version.** Wired up as a `mailto:` link to `mikemann2199@gmail.com` (pre-filled subject line). No third-party form service — chosen deliberately to avoid a signup step. If a native in-page form is wanted later, Formspree (free tier, just needs a form ID from formspree.io) is the natural upgrade.
+
+**Site framing updated.** Removed "mock site" language from the title, About copy, and footer since the site is no longer meant to read as a demo.
+
+**Not yet done / open item:**
+- **Custom domain.** Still only on the default `teredatrades.github.io/Amanstravels` URL. This needs Aman to actually purchase a domain first (a registrar account + payment, which can't be done on his behalf) — once there's a domain name, the remaining steps are: add a `CNAME` file to the repo root with the domain, and set DNS records (A/ALIAS or CNAME depending on registrar) pointing at GitHub Pages. Whoever picks this up next should ask if a domain has been bought yet before doing anything here.
+- Extra travel photos referenced in an earlier version of these notes (Sky Tower/Big Ben replica and a building exterior in Macau, a Luxembourg rooftop view) were only ever in a previous session's temporary workspace, not committed to this repo — they no longer exist anywhere accessible. If the gallery should expand beyond the current 8, those would need to be re-sourced from Aman.
 
 ## Repo mechanics worth knowing
 
 - Deploys happen automatically on push to `main` via `.github/workflows/pages.yml` — don't reintroduce the old manual "Settings → Pages → pick a branch" flow described in the original README; that's been superseded.
 - Image asset naming convention: `assets/photoN-<slug>-<width>.<jpg|webp>`, originals at `assets/originals/photoN-<slug>.jpg`. Keep this pattern if adding more gallery photos so `index.html`'s `srcset` stays predictable.
+- The site no longer presents itself as a "mock" — copy and framing should stay real/first-person going forward.
