@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Aman's Travels — A Mock Travel Site</title>
+  <title>Aman's Travels</title>
   <meta name="description" content="Aman's travel stories, photos, and tips." />
   <style>
     :root{--accent:#0b77d6;--bg:#f7f9fc;--card:#ffffff;--muted:#666}
@@ -15,11 +15,8 @@
     main{padding:2rem 1rem}
     .hero{display:grid;grid-template-columns:1fr;gap:1rem;align-items:center}
     .card{background:var(--card);border-radius:10px;padding:1rem;box-shadow:0 4px 12px rgba(12,24,40,.06)}
-    .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:1rem}
-    .post-title{font-size:1.05rem;margin:0 0 .5rem}
     footer{padding:1rem;text-align:center;color:var(--muted);font-size:.9rem}
     @media(min-width:720px){.hero{grid-template-columns:2fr 1fr}}
-    .badge{display:inline-block;background:rgba(11,119,214,.1);color:var(--accent);padding:.25rem .5rem;border-radius:999px;font-weight:600;font-size:.9rem}
     img.responsive{width:100%;height:auto;border-radius:8px;display:block}
 
     /* Gallery styles */
@@ -36,7 +33,6 @@
       <p style="margin:.25rem 0 .75rem">Snapshot stories, photos, and tips from Aman’s journeys around the world.</p>
       <nav>
         <a class="nav" href="#about">About</a>
-        <a class="nav" href="#posts">Posts</a>
         <a class="nav" href="#gallery">Photos</a>
         <a class="nav" href="#contact">Contact</a>
       </nav>
@@ -47,35 +43,17 @@
     <section id="about" class="hero">
       <div class="card">
         <h2>Welcome</h2>
-        <p>Hi — I'm Aman. This is a mock site showcasing travel highlights: quick stories, photos, and practical tips for each destination.</p>
-        <p><span class="badge">Mock site</span> • Built for demo &amp; testing</p>
+        <p>Hi — I'm Aman. This site showcases travel highlights: quick stories, photos, and practical tips from destinations I've visited.</p>
       </div>
 
       <aside class="card">
         <h3>Snapshot</h3>
-        <img class="responsive" src="assets/sample-photo.jpg" alt="Sample travel photo" />
-        <p style="margin-top:.5rem;color:var(--muted)">Replace the image with your own under assets/ and update captions.</p>
+        <picture>
+          <source srcset="assets/photo6-mirador-norte-480.webp 480w, assets/photo6-mirador-norte-800.webp 800w, assets/photo6-mirador-norte-1600.webp 1600w" type="image/webp">
+          <img class="responsive" src="assets/photo6-mirador-norte-800.jpg" alt="Fence with many padlocks overlooking a valley and distant city below" loading="lazy" />
+        </picture>
+        <p style="margin-top:.5rem;color:var(--muted)">Mirador al Norte, Monserrate — Bogotá, Colombia</p>
       </aside>
-    </section>
-
-    <section id="posts">
-      <h2 style="margin-top:1.5rem">Recent posts</h2>
-      <div class="posts">
-        <article class="card">
-          <h3 class="post-title">A Morning in Udaipur</h3>
-          <p style="margin:.25rem 0;color:var(--muted)">A quick story about lakes, sunrise, and chai. <a href="#">Read more →</a></p>
-        </article>
-
-        <article class="card">
-          <h3 class="post-title">Trekking the Western Ghats</h3>
-          <p style="margin:.25rem 0;color:var(--muted)">Trail notes, packing tips, and a route map. <a href="#">Read more →</a></p>
-        </article>
-
-        <article class="card">
-          <h3 class="post-title">Street Food in Delhi</h3>
-          <p style="margin:.25rem 0;color:var(--muted)">Where to eat, what to try, and safety tips. <a href="#">Read more →</a></p>
-        </article>
-      </div>
     </section>
 
     <!-- Photos gallery -->
@@ -153,14 +131,15 @@
     <section id="contact" style="margin-top:2rem">
       <div class="card">
         <h2>Contact</h2>
-        <p>Want to reach Aman? This is a mock site — replace this with a contact form (Formspree, Netlify Forms) or an email link.</p>
+        <p>Want to reach Aman? Send an email directly:</p>
+        <p><a href="mailto:mikemann2199@gmail.com?subject=Hello%20from%20Aman's%20Travels" style="color:var(--accent);font-weight:600">mikemann2199@gmail.com</a></p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <small>© Aman’s Travels — mock site</small>
+      <small>© Aman’s Travels</small>
     </div>
   </footer>
 </body>
