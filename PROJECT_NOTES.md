@@ -49,8 +49,9 @@ picks this up next:
   Contact links) and a separate dark hero band below it with the tagline
   "Travel with Aman. Travel in Peace." and a status badge reading
   **"📍 Most Recent Stop: Addis Ababa, Ethiopia."** That badge text is
-  hardcoded in the HTML, not derived from anything — whoever adds the next
-  destination should remember to update it manually, or it'll go stale.
+  hardcoded in the HTML — it's currently accurate (Addis is the first/most
+  recent entry-card below it), and an HTML comment was added directly above
+  it as a reminder to keep it in sync whenever a newer trip is added.
 - **Layout**: moved from a single-column hero + grid gallery to a two-column
   blog layout — main content (About card + gallery) on the left (2fr),
   a right sidebar (1fr) with three widgets, stacking to one column under
@@ -66,18 +67,18 @@ picks this up next:
   (unchanged photo6-mirador-norte + caption, same as the old About-section
   aside), and a "Say Hello" contact widget (same `mailto:` link as before,
   now styled as a button).
-- **Note — duplicated About copy**: the exact "Hi — I'm Aman. This site
-  showcases..." paragraph now appears twice: once in the main `#about`
-  card and again in the sidebar's "Meet Aman" box. Might be intentional
-  (main card = fuller welcome, sidebar = compact bio), but worth a look —
-  if Aman wants them to read differently, the sidebar version should
-  probably be shortened rather than copy-pasted.
+- **Fixed — duplicated About copy.** The sidebar's "Meet Aman" box used to
+  repeat the main `#about` card's full welcome paragraph verbatim. Shortened
+  it to a one-line bio ("Traveler and photographer, currently sharing stops
+  from Colombia, Belgium, Macao, Spain, and Ethiopia.") so the two read as
+  a fuller welcome (main card) vs. a quick sidebar bio, rather than the same
+  text twice. Update the country list there if the destination mix changes.
 - Deployment mechanics, image asset naming convention, and the `mailto:`
   contact address are all unchanged by this redesign — everything below in
   "Repo mechanics worth knowing" still applies as-is.
 
 **Not yet done / open item:**
-- **Custom domain.** Still only on the default `teredatrades.github.io/Amanstravels` URL. This needs Aman to actually purchase a domain first (a registrar account + payment, which can't be done on his behalf) — once there's a domain name, the remaining steps are: add a `CNAME` file to the repo root with the domain, and set DNS records (A/ALIAS or CNAME depending on registrar) pointing at GitHub Pages. Whoever picks this up next should ask if a domain has been bought yet before doing anything here.
+- **Custom domain.** Still only on the default `teredatrades.github.io/Amanstravels` URL. Confirmed as of 2026-08-31: **not purchased yet.** This needs Aman to actually buy a domain first (a registrar account + payment, which can't be done on his behalf) — once there's a domain name, the remaining steps are: add a `CNAME` file to the repo root with the domain, and set DNS records (A/ALIAS or CNAME depending on registrar) pointing at GitHub Pages. Still nothing to do here until a domain exists — check back next session.
 - Extra travel photos referenced in an earlier version of these notes (Sky Tower/Big Ben replica and a building exterior in Macau, a Luxembourg rooftop view) were only ever in a previous session's temporary workspace, not committed to this repo — they no longer exist anywhere accessible. If the gallery should expand beyond the current 8, those would need to be re-sourced from Aman.
 
 ## Repo mechanics worth knowing
