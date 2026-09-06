@@ -175,8 +175,13 @@ section and a `Posts` nav link were added to `index.html` linking to it.
 line-item cost (flight, hotel, transfers, food, eSIM, total) and the
 "was it worth it" closing paragraph are placeholders marked in gold
 italic (e.g. `$[FLIGHT COST]`) since the actual amounts spent aren't
-known. Next step is Aman filling those in — the structure and copy
-around them are otherwise done.
+known — Dubai trip numbers weren't tracked in the moment and can't be
+reliably backfilled now. **Confirmed: this waits until the next trip.**
+`TRIP_COST_QUESTIONS.md` in the repo root is a reusable question list to
+fill out during/right after that next trip (flights, accommodation,
+local transport, activities, food, connectivity, plus a closing
+reflection) so the answers can drop straight into a cost-breakdown post
+instead of trying to reconstruct totals afterward.
 
 No real affiliate links are in the post yet (see the affiliate-program
 signups still needed, noted above) — once those accounts exist, the
