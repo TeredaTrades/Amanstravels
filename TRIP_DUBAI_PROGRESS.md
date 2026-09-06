@@ -96,13 +96,24 @@ behind-the-scenes cut if wanted.
   unless Aman says otherwise.
 - **All batch-1 photos processed** — 3 of 4 committed to the gallery (see above); the 4th (in-flight
   screen) intentionally held back from the public site.
-- **Site integration — video section design decided, not yet built.** Recommended approach (pending
-  Aman's confirmation): a new "The Journey" section between the hero and the About card, structured as
-  a horizontal-scroll filmstrip of all 8 clips in story order (takeoff → descent → landing → stay →
-  takeoff), each with a one-line caption, autoplay-muted-loop on scroll-into-view like a social media
-  story reel rather than individual click-to-play embeds. Keeps the existing entry-card gallery
-  untouched/unchanged. Nothing built yet — just the recommendation.
+- **Site integration — done.** Built the "The Journey" section as recommended: a new full-width
+  section between the hero and the main two-column container, with its own nav link (`#journey`).
+  It's a horizontal-scroll filmstrip (`.journey-strip`, CSS `scroll-snap-type: x`) of all 8 clips in
+  chronological story order — takeoff → descent → landing → the stay (4 clips, ordered by their actual
+  capture timestamps: marina street at 18:55 → beach skyline at 19:20:01 → water/foam clips at
+  19:20:58 and 19:21:19) → Dubai takeoff — each in its native 9:16 frame with a poster thumbnail
+  (extracted to `assets/videos/posters/`), a numbered step label ("1 · Departure", "4 · The Stay",
+  etc.), and a one-line caption. A dashed placeholder card at the end reads "Full trip video coming
+  soon to YouTube" for whenever that link exists.
+  Videos are `<video muted loop playsinline preload="none">` with `data-src` instead of `src` — a
+  small vanilla-JS `IntersectionObserver` (no dependencies, inline `<script>` at the bottom of
+  `index.html`) sets the real `src` and calls `.play()` only once a card scrolls into view (60%
+  visible), and `.pause()`s it on scroll-away. This means the page loads instantly (just 8 small
+  poster JPGs) and only fetches a video's ~0.4–2.3MB once the visitor actually scrolls to it, rather
+  than loading all ~8MB of clips upfront. Existing entry-card photo gallery is untouched.
 - **YouTube full-length compilation** — not started; no footage has been assembled into a longer cut
   yet. Now that the full story arc is confirmed, this compilation would likely follow the same
-  1→5 beat order laid out above, just uncompressed/full-length/unmuted versions of the same source clips.
+  1→5 beat order laid out above, just uncompressed/full-length/unmuted versions of the same source
+  clips. Once a YouTube link exists, swap it into the placeholder card at the end of `.journey-strip`
+  in `index.html`.
 - Doesn't affect this thread, but note the still-open custom-domain item tracked in `PROJECT_NOTES.md`.
