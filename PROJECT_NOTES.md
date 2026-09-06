@@ -192,29 +192,96 @@ A printable PDF version of `TRIP_COST_QUESTIONS.md` was also generated
 handed directly to Aman — it's not part of the repo/site since it's a
 personal-use document, not a page.
 
-## Session summary — why each piece happened
+## Full session log — everything done and why (consolidated)
 
-For whoever picks this up next, the throughline connecting everything
-above: the site had real content (photos, videos) but no way to measure
-if anyone was seeing it, no monetization path, and nothing helping search
-engines or AI tools understand/surface it. This session addressed all
-three, in order of what would compound over time:
+Context for whoever/whatever picks this up next: this was one long
+session covering monetization planning through several shipped features.
+Logged here as one trail since the session is ending on token limits.
 
-1. **Analytics (GoatCounter) first** — because every other decision
-   (which affiliate links to add, whether display ads make sense yet,
-   which content to write next) depends on knowing if there's traffic
-   at all. Without it we'd be guessing.
-2. **SEO/AI-optimization second** — cheap, one-time, and makes every
-   future page (this cost post, the next ones) discoverable from day
-   one instead of needing to retrofit meta tags/structured data later.
-3. **The trip-cost post third** — the first concrete piece of the
-   content-expansion plan, chosen because it's the fastest path to
-   content that can carry affiliate links later (per the monetization
-   plan above) and because the Dubai trip footage/data already existed.
-   It's scaffolded rather than finished because real cost data wasn't
-   tracked during the Dubai trip — rather than fabricate numbers, the
-   post ships as a template with a companion question list
-   (`TRIP_COST_QUESTIONS.md` + PDF) for the *next* trip to fill in live.
+**1. Analytics (GoatCounter) — done, confirmed live.**
+Why first: every later decision (which affiliate links, whether display
+ads make sense, what content to write) depends on knowing if there's
+real traffic. Site: https://amanstravels.goatcounter.com, real site code
+wired into `index.html`. Aman signed up himself (account creation needs
+an email, can't be done on his behalf).
+
+**2. SEO & AI-optimization — done.**
+Why second: cheap, one-time, makes every future page discoverable from
+day one. Added: meta description/canonical/OG/Twitter-card tags,
+JSON-LD structured data (`WebSite`/`Person` on home, `Article` on each
+post), `robots.txt`, `sitemap.xml` (needs a new `<url>` per future
+page — not automatic), and `llms.txt` (emerging convention for AI
+crawlers/answer engines, states plainly that photos/videos are Aman's
+own and cost figures are real unless marked placeholder).
+
+**3. Trip-cost breakdown post — scaffolded, `posts/dubai-trip-cost-breakdown.html`.**
+Why: fastest content-expansion win since the Dubai footage/data already
+existed; a natural future home for affiliate links per the monetization
+plan (see below). Every dollar figure is a placeholder — Dubai trip
+costs weren't tracked in the moment and weren't fabricated. Fix: a
+reusable question list (`TRIP_COST_QUESTIONS.md` + a printable PDF
+handed to Aman directly, not stored in the repo) for the *next* trip to
+fill in live. **Confirmed: real numbers wait until the next trip —
+this is intentionally on hold, not a bug.**
+
+**4. "Everywhere I've Been" map — done, confirmed working.**
+Interactive Leaflet.js map (`#map` section) with one pin per country
+visited (Dubai, Addis Ababa, Macao, Liège, Madrid, Bogotá), each
+popup linking to that location's gallery entry via anchor ids
+(`entry-dubai`, `entry-addis`, etc. — added to the first entry-card per
+city). Tiles from OpenStreetMap, no API key.
+**Bug that shipped and was fixed:** the Leaflet CSS/JS `integrity` (SRI)
+hashes were originally typed from memory instead of verified, so they
+didn't match the real files and the browser silently blocked both from
+loading — map rendered as an empty bordered box, no console-visible
+error. Fixed by pulling the exact hashes from Leaflet's own
+leafletjs.com download page and switching to their recommended unpkg
+URLs. Also added `map.invalidateSize()` ~300ms after init as a general
+safety net for container-sizing race conditions. **Confirmed fixed** —
+Aman screenshotted the live map showing tiles and all 6 pins rendering
+correctly after the fix deployed. **Lesson logged:** never hand-type an
+SRI hash from memory again — pull it from the library's own docs or
+omit `integrity` entirely.
+
+**5. Visa/logistics post — scaffolded, `posts/dubai-visa-logistics.html`.**
+Same standalone-page pattern as the cost post. The general visa-checking
+guidance (passport validity, eVisa/visa-on-arrival eligibility varies by
+nationality, proof of onward travel, travel insurance) is real, verified
+guidance — the two official links in it (UAE's `icp.gov.ae`, Ethiopia's
+`evisa.gov.et`) were confirmed as genuine official government domains
+via search before being added, not assumed. Aman's actual visa
+type/process, packing list, and flight/immigration/transfer experience
+are marked placeholder, same honest approach as the cost post.
+
+**6. Newsletter / "New Stop Alerts" capture — scaffolded, needs an account.**
+A new sidebar widget (`#newsletter`, "Subscribe" in nav) with an email
+input submitting to a Formspree endpoint. **Open item, same shape as
+every other account-gated item above:** the form action points at
+`https://formspree.io/f/YOUR_FORM_ID` — a placeholder. Someone needs to
+sign up at formspree.io (needs an email, can't be done on Aman's
+behalf), create a form, and swap `YOUR_FORM_ID` for the real form ID
+before this actually captures emails. Until then the form is visually
+complete but non-functional — don't advertise it as live.
+
+**Monetization plan (from the planning conversation, still mostly
+open):** affiliate links (Booking.com/Expedia, GetYourGuide/Viator,
+Amazon Associates, Airalo, SafetyWing) need their own account signups
+before real links can go in — none created yet. Display ads intentionally
+on hold until GoatCounter shows real traffic (Ezoic needs 250K monthly
+users; Media.net/AdSense have no real minimum and are the fallback).
+YouTube compilation not started. Print-on-demand/consulting/sponsorships
+are longer-term, no action taken.
+
+**Deferred by explicit request — Instagram/TikTok clip pushes.** Not
+started; picking mini-clips from `assets/videos/` and posting as
+Reels/Shorts was one of the five original content-expansion ideas but
+is on hold until a future session.
+
+**Net status of the 5 original content-expansion ideas:** analytics ✅
+done, SEO/AI ✅ done, map ✅ done, cost-breakdown post ⏸ scaffolded
+(needs next-trip data), visa/logistics post ⏸ scaffolded (needs Aman's
+input), newsletter ⏸ scaffolded (needs Formspree account), social
+pushes ⏸ not started (deferred).
 
 ## "Everywhere I've Been" map — done
 

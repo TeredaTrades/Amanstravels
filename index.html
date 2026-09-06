@@ -319,6 +319,30 @@
 
     .contact-widget a.button:hover { background-color: #2c4c43; }
 
+    /* Newsletter widget */
+    .newsletter-widget p { font-size: 0.85rem; margin-bottom: 1rem; color: var(--text-dark); }
+    .newsletter-form { display: flex; flex-direction: column; gap: 0.6rem; }
+    .newsletter-form input[type="email"] {
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 0.9rem;
+    }
+    .newsletter-form button {
+      padding: 0.7rem;
+      background-color: var(--accent);
+      color: var(--primary-dark);
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .newsletter-form button:hover { background-color: #b3852f; }
+    .newsletter-note { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; }
+
     /* Footer */
     footer {
       background-color: var(--primary);
@@ -451,6 +475,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#gallery">Photos</a></li>
       <li><a href="#posts">Posts</a></li>
+      <li><a href="#newsletter">Subscribe</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -725,6 +750,16 @@
           <img src="assets/photo6-mirador-norte-800.jpg" alt="Fence with many padlocks overlooking a valley and distant city below" loading="lazy">
         </picture>
         <p>Mirador al Norte, Monserrate — Bogotá, Colombia</p>
+      </div>
+
+      <div class="widget newsletter-widget" id="newsletter">
+        <h3 class="widget-title">New Stop Alerts</h3>
+        <p>Get an email whenever there's a new destination, post, or set of photos.</p>
+        <form class="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="email" name="email" placeholder="you@example.com" required />
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="newsletter-note">No spam — just new-stop alerts, unsubscribe anytime.</p>
       </div>
 
       <div class="widget contact-widget" id="contact">
