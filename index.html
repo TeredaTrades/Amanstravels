@@ -212,6 +212,37 @@
     .post-card .entry-title { margin-bottom: 0.4rem; }
     .post-card .entry-excerpt { display: block; }
 
+    /* Everywhere I've Been map */
+    .map-section {
+      background-color: var(--primary-dark);
+      padding: 3rem 5%;
+      color: #d1e0d7;
+    }
+    .map-section .section-title { color: #fff; }
+    .map-intro {
+      max-width: 640px;
+      margin: 0 auto 1.5rem;
+      text-align: center;
+      color: #d1e0d7;
+      font-size: 0.98rem;
+    }
+    #travel-map {
+      max-width: 1000px;
+      margin: 0 auto;
+      height: 420px;
+      border-radius: 6px;
+      border: 3px solid var(--accent);
+      overflow: hidden;
+    }
+    .leaflet-popup-content-wrapper {
+      font-family: Georgia, 'Times New Roman', serif;
+      border-radius: 4px;
+    }
+    .leaflet-popup-content a { color: var(--accent); font-weight: 600; }
+    @media (max-width: 768px) {
+      #travel-map { height: 320px; }
+    }
+
     /* Sidebar */
     .sidebar { display: flex; flex-direction: column; gap: 2rem; }
 
@@ -406,6 +437,8 @@
        Site: https://amanstravels.goatcounter.com -->
   <script data-goatcounter="https://amanstravels.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
+  <!-- Leaflet (map library) - free, no API key needed, tiles from OpenStreetMap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
@@ -413,6 +446,7 @@
     <div class="logo">Aman's <span>Travels</span></div>
     <ul class="nav-links">
       <li><a href="#journey">Journey</a></li>
+      <li><a href="#map">Map</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#gallery">Photos</a></li>
       <li><a href="#posts">Posts</a></li>
@@ -505,6 +539,12 @@
     </div>
   </section>
 
+  <section class="map-section" id="map">
+    <div class="section-title">Everywhere I've Been</div>
+    <p class="map-intro">Six countries so far — click a pin to jump to the photos from that stop.</p>
+    <div id="travel-map"></div>
+  </section>
+
   <div class="container">
 
     <main>
@@ -517,7 +557,7 @@
         <div class="section-title">Field Logs &amp; Travels</div>
         <div class="entries-grid">
 
-          <article class="entry-card">
+          <article class="entry-card" id="entry-dubai">
             <picture>
               <source srcset="assets/photo11-marina-boat-480.webp 480w, assets/photo11-marina-boat-800.webp 800w, assets/photo11-marina-boat-1600.webp 1600w" type="image/webp">
               <img src="assets/photo11-marina-boat-800.jpg" alt="A boat and jet skis moving through Dubai Marina's waterway at dusk, with illuminated towers reflected in the water" loading="lazy">
@@ -553,7 +593,7 @@
             </div>
           </article>
 
-          <article class="entry-card">
+          <article class="entry-card" id="entry-addis">
             <picture>
               <source srcset="assets/photo8-addis-aerial-480.webp 480w, assets/photo8-addis-aerial-800.webp 800w, assets/photo8-addis-aerial-1600.webp 1600w" type="image/webp">
               <img src="assets/photo8-addis-aerial-800.jpg" alt="Aerial view of a city and surrounding neighborhoods seen from above" loading="lazy">
@@ -565,7 +605,7 @@
             </div>
           </article>
 
-          <article class="entry-card">
+          <article class="entry-card" id="entry-macao">
             <picture>
               <source srcset="assets/photo5-parisian-480.webp 480w, assets/photo5-parisian-800.webp 800w, assets/photo5-parisian-1600.webp 1600w" type="image/webp">
               <img src="assets/photo5-parisian-800.jpg" alt="Night view of a grand, illuminated building façade along a boulevard" loading="lazy">
@@ -577,7 +617,7 @@
             </div>
           </article>
 
-          <article class="entry-card">
+          <article class="entry-card" id="entry-liege">
             <picture>
               <source srcset="assets/photo4-le-carre-480.webp 480w, assets/photo4-le-carre-800.webp 800w, assets/photo4-le-carre-1600.webp 1600w" type="image/webp">
               <img src="assets/photo4-le-carre-800.jpg" alt="DJ performing at a club with purple and red lighting" loading="lazy">
@@ -589,7 +629,7 @@
             </div>
           </article>
 
-          <article class="entry-card">
+          <article class="entry-card" id="entry-madrid">
             <picture>
               <source srcset="assets/photo7-la-pecera-480.webp 480w, assets/photo7-la-pecera-800.webp 800w, assets/photo7-la-pecera-1600.webp 1600w" type="image/webp">
               <img src="assets/photo7-la-pecera-800.jpg" alt="Narrow sunlit street with tall, warm-colored buildings and a van driving uphill" loading="lazy">
@@ -601,7 +641,7 @@
             </div>
           </article>
 
-          <article class="entry-card">
+          <article class="entry-card" id="entry-bogota">
             <picture>
               <source srcset="assets/photo2-monserrate-480.webp 480w, assets/photo2-monserrate-800.webp 800w, assets/photo2-monserrate-1600.webp 1600w" type="image/webp">
               <img src="assets/photo2-monserrate-800.jpg" alt="Wooden trail sign showing route information in a forest setting" loading="lazy">
@@ -716,6 +756,41 @@
       }, { root: null, threshold: 0.6 });
 
       videos.forEach(function (video) { observer.observe(video); });
+    })();
+  </script>
+
+  <!-- Leaflet (map library) - free, no API key needed, tiles from OpenStreetMap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // "Everywhere I've Been" map: one pin per country visited so far,
+    // each linking back to that location's entry-card in the gallery below.
+    (function () {
+      var mapEl = document.getElementById('travel-map');
+      if (!mapEl || typeof L === 'undefined') return;
+
+      var stops = [
+        { name: 'Dubai, UAE',            lat: 25.2048, lng: 55.2708, anchor: '#entry-dubai' },
+        { name: 'Addis Ababa, Ethiopia', lat: 9.0300,  lng: 38.7400, anchor: '#entry-addis' },
+        { name: 'Macao',                 lat: 22.1987, lng: 113.5439, anchor: '#entry-macao' },
+        { name: 'Liège, Belgium',        lat: 50.6326, lng: 5.5797,  anchor: '#entry-liege' },
+        { name: 'Madrid, Spain',         lat: 40.4168, lng: -3.7038, anchor: '#entry-madrid' },
+        { name: 'Bogotá, Colombia',      lat: 4.7110,  lng: -74.0721, anchor: '#entry-bogota' }
+      ];
+
+      var map = L.map('travel-map', { scrollWheelZoom: false }).setView([20, 20], 2);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      var bounds = [];
+      stops.forEach(function (stop) {
+        var marker = L.marker([stop.lat, stop.lng]).addTo(map);
+        marker.bindPopup('<strong>' + stop.name + '</strong><br><a href="' + stop.anchor + '">See photos &rarr;</a>');
+        bounds.push([stop.lat, stop.lng]);
+      });
+      map.fitBounds(bounds, { padding: [30, 30] });
     })();
   </script>
 

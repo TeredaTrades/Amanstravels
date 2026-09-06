@@ -216,6 +216,33 @@ three, in order of what would compound over time:
    post ships as a template with a companion question list
    (`TRIP_COST_QUESTIONS.md` + PDF) for the *next* trip to fill in live.
 
+## "Everywhere I've Been" map — done
+
+A new full-width section (`#map`, between "The Journey" and the main
+two-column container) shows an interactive Leaflet.js map with one pin
+per country visited so far (Dubai/UAE, Addis Ababa/Ethiopia, Macao,
+Liège/Belgium, Madrid/Spain, Bogotá/Colombia). Uses:
+- **Leaflet** (via cdnjs) for the map itself, no API key needed.
+- **OpenStreetMap** tiles (free, standard attribution included in the
+  map per their license — don't remove the attribution link).
+- Each pin's popup has a "See photos →" link that jumps straight to that
+  location's first entry-card in the gallery below. To make this work,
+  the first `entry-card` for each city now has an `id` attribute
+  (`entry-dubai`, `entry-addis`, `entry-macao`, `entry-liege`,
+  `entry-madrid`, `entry-bogota`) — keep these ids if entry-cards get
+  reordered or added to.
+- Map auto-fits its zoom/bounds to show all pins (`fitBounds`), so
+  adding a new country pin later doesn't require manually recalculating
+  the view.
+- `scrollWheelZoom` is disabled so the map doesn't hijack page-scroll
+  when a visitor scrolls past it.
+- A "Map" nav link was added between Journey and About.
+
+**To add a new stop later:** add an object to the `stops` array in the
+map-init `<script>` at the bottom of `index.html` (name, lat, lng, and
+the anchor id of that location's entry-card), and make sure that
+entry-card has the matching `id`.
+
 ## Repo mechanics worth knowing
 
 - Deploys happen automatically on push to `main` via `.github/workflows/pages.yml` — don't reintroduce the old manual "Settings → Pages → pick a branch" flow described in the original README; that's been superseded.
