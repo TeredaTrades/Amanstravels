@@ -90,6 +90,55 @@ picks this up next:
 - **Custom domain.** Still only on the default `teredatrades.github.io/Amanstravels` URL. Confirmed as of 2026-08-31: **not purchased yet.** This needs Aman to actually buy a domain first (a registrar account + payment, which can't be done on his behalf) — once there's a domain name, the remaining steps are: add a `CNAME` file to the repo root with the domain, and set DNS records (A/ALIAS or CNAME depending on registrar) pointing at GitHub Pages. Still nothing to do here until a domain exists — check back next session.
 - Extra travel photos referenced in an earlier version of these notes (Sky Tower/Big Ben replica and a building exterior in Macau, a Luxembourg rooftop view) were only ever in a previous session's temporary workspace, not committed to this repo — they no longer exist anywhere accessible. If the gallery should expand beyond the current 8, those would need to be re-sourced from Aman.
 
+## Monetization & content-expansion plan (logged from planning conversation)
+
+Context for whoever picks this up: this was a planning discussion, not yet
+fully executed. Some of it needs Aman to take actions we can't do on his
+behalf (same shape as the custom-domain blocker above).
+
+**Analytics — script added, needs a real site code.**
+GoatCounter (same free, cookie-less tool used on MoneyMattersDaily) works
+fine on a static GitHub Pages site — it's just a `<script>` tag, no
+server-side code needed. The snippet is now in `index.html`'s `<head>`
+with a placeholder site code (`AMANSTRAVELS`). **Open item:** someone
+needs to sign up at https://goatcounter.com (requires an email — can't be
+done on Aman's behalf) and swap the placeholder for the real
+`https://<realcode>.goatcounter.com/count` URL.
+
+**Revenue sequencing discussed (not yet implemented):**
+1. **Affiliate links first** — lowest lift, doesn't need traffic scale.
+   Candidates: Booking.com/Expedia/Trip.com (hotel links per post),
+   GetYourGuide/Viator (tours/activities), Amazon Associates (travel gear),
+   Airalo (eSIM), SafetyWing (travel insurance). Each needs its own
+   affiliate-program signup (Aman's accounts) before real links can be
+   dropped in — we can draft the surrounding post copy, but not create
+   the affiliate accounts.
+2. **Display ads — hold off.** Ezoic's minimum is 250K monthly users
+   (way out of reach for now); Media.net/AdSense have no real minimum
+   and are the fallback once GoatCounter shows steady weekly traffic.
+   Revisit once there's real numbers.
+3. **YouTube** — separate income line once the full trip compilation
+   (see `TRIP_DUBAI_PROGRESS.md`) is posted and the channel builds watch
+   time.
+4. **Longer-term/Aman-specific** — print-on-demand of a few gallery-quality
+   shots (marina boat shot is the standout candidate), paid
+   itinerary-consulting if people start asking, tourism-board sponsorships
+   once there's a real audience.
+
+**Content expansion ideas (agreed to implement all — in progress):**
+- Trip-cost breakdown post ("What this Dubai trip actually cost") —
+  natural home for flight/hotel/eSIM affiliate links.
+- Practical/logistics posts — visa notes, packing, the Addis→Dubai route.
+- An interactive "everywhere I've been" map (Colombia, Belgium, Macao,
+  Spain, Ethiopia, UAE so far) as a homepage anchor.
+- Push the mini-clips to Instagram/TikTok as Reels/Shorts, linking back
+  to the site or eventual YouTube video.
+- A simple newsletter/"new stop" email capture for repeat-visitor value.
+
+None of the content-expansion items are built yet — next session should
+pick one and start (the cost-breakdown post is probably the fastest win
+since the Dubai trip data already exists in `TRIP_DUBAI_PROGRESS.md`).
+
 ## Repo mechanics worth knowing
 
 - Deploys happen automatically on push to `main` via `.github/workflows/pages.yml` — don't reintroduce the old manual "Settings → Pages → pick a branch" flow described in the original README; that's been superseded.
