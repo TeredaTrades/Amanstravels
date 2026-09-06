@@ -187,6 +187,35 @@ No real affiliate links are in the post yet (see the affiliate-program
 signups still needed, noted above) — once those accounts exist, the
 flight/hotel/eSIM line items are the natural place to add them.
 
+A printable PDF version of `TRIP_COST_QUESTIONS.md` was also generated
+(same questions, one blank line per question for handwriting answers) and
+handed directly to Aman — it's not part of the repo/site since it's a
+personal-use document, not a page.
+
+## Session summary — why each piece happened
+
+For whoever picks this up next, the throughline connecting everything
+above: the site had real content (photos, videos) but no way to measure
+if anyone was seeing it, no monetization path, and nothing helping search
+engines or AI tools understand/surface it. This session addressed all
+three, in order of what would compound over time:
+
+1. **Analytics (GoatCounter) first** — because every other decision
+   (which affiliate links to add, whether display ads make sense yet,
+   which content to write next) depends on knowing if there's traffic
+   at all. Without it we'd be guessing.
+2. **SEO/AI-optimization second** — cheap, one-time, and makes every
+   future page (this cost post, the next ones) discoverable from day
+   one instead of needing to retrofit meta tags/structured data later.
+3. **The trip-cost post third** — the first concrete piece of the
+   content-expansion plan, chosen because it's the fastest path to
+   content that can carry affiliate links later (per the monetization
+   plan above) and because the Dubai trip footage/data already existed.
+   It's scaffolded rather than finished because real cost data wasn't
+   tracked during the Dubai trip — rather than fabricate numbers, the
+   post ships as a template with a companion question list
+   (`TRIP_COST_QUESTIONS.md` + PDF) for the *next* trip to fill in live.
+
 ## Repo mechanics worth knowing
 
 - Deploys happen automatically on push to `main` via `.github/workflows/pages.yml` — don't reintroduce the old manual "Settings → Pages → pick a branch" flow described in the original README; that's been superseded.
