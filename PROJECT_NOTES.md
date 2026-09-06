@@ -138,6 +138,50 @@ None of the content-expansion items are built yet — next session should
 pick one and start (the cost-breakdown post is probably the fastest win
 since the Dubai trip data already exists in `TRIP_DUBAI_PROGRESS.md`).
 
+## SEO & AI-optimization — done, first pass
+
+Full package added this session:
+- **Meta tags** — real `<title>`/`<meta description>` on both the home page
+  and the new post, a `<link rel="canonical">` on each, Open Graph tags
+  (`og:title`, `og:description`, `og:image`, `og:url`, `og:type`) and a
+  Twitter `summary_large_image` card, so links shared on social/Slack/etc.
+  render with a title, description, and the marina-boat photo as preview
+  image.
+- **Structured data (JSON-LD)** — `WebSite`/`Person` schema on the home
+  page, `Article` schema on the trip-cost post. Helps both traditional
+  search and AI answer engines understand what the site/page is without
+  guessing from raw HTML.
+- **`robots.txt`** — allows all crawlers, points at `sitemap.xml`.
+- **`sitemap.xml`** — lists the home page and the new post; add a new
+  `<url>` entry here every time a new page/post is added.
+- **`llms.txt`** — plain-text summary at the repo root following the
+  emerging llms.txt convention some AI crawlers/answer engines read,
+  describing the site and explicitly noting that photos/videos are
+  Aman's own (not stock) and that cost figures are real unless marked
+  as placeholders.
+
+**Open item:** `sitemap.xml` needs a new `<url>` entry for every future
+page/post — it's not auto-generated.
+
+## Content expansion — trip-cost breakdown post (first one, scaffolded)
+
+`posts/dubai-trip-cost-breakdown.html` is a new standalone page (not a
+section of `index.html`) — matches the site's green/gold/serif theme,
+has its own SEO tags and `Article` structured data, includes the
+GoatCounter snippet, and links back to the home page. A "From the Blog"
+section and a `Posts` nav link were added to `index.html` linking to it.
+
+**Open item — needs Aman's real numbers.** The post is a template: every
+line-item cost (flight, hotel, transfers, food, eSIM, total) and the
+"was it worth it" closing paragraph are placeholders marked in gold
+italic (e.g. `$[FLIGHT COST]`) since the actual amounts spent aren't
+known. Next step is Aman filling those in — the structure and copy
+around them are otherwise done.
+
+No real affiliate links are in the post yet (see the affiliate-program
+signups still needed, noted above) — once those accounts exist, the
+flight/hotel/eSIM line items are the natural place to add them.
+
 ## Repo mechanics worth knowing
 
 - Deploys happen automatically on push to `main` via `.github/workflows/pages.yml` — don't reintroduce the old manual "Settings → Pages → pick a branch" flow described in the original README; that's been superseded.

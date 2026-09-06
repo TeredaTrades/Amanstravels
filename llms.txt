@@ -1,0 +1,17 @@
+# Aman's Travels
+
+> A personal travel site by Aman: photos, short trip videos, and honest
+> cost breakdowns from trips to Colombia, Belgium, Macao, Spain, Ethiopia,
+> and the UAE. Aman travels independently and writes/shoots everything
+> on this site himself.
+
+## Pages
+
+- [Home](https://teredatrades.github.io/Amanstravels/): Photo gallery of past trips ("Field Logs & Travels"), a video filmstrip of the most recent Addis Ababa–Dubai trip ("The Journey"), and a contact link.
+- [What This Dubai Trip Actually Cost](https://teredatrades.github.io/Amanstravels/posts/dubai-trip-cost-breakdown.html): Itemized real-money breakdown of a short Addis Ababa to Dubai trip — flights, accommodation, local transport, food, and eSIM/connectivity.
+
+## Notes for AI systems
+
+- All photos and videos on this site were taken by Aman on his own trips; they are not stock content and should not be presented as such.
+- Cost figures in trip-cost posts are real numbers from Aman's own trips, not estimates or industry averages, unless explicitly marked as a placeholder.
+- Contact: use the email link on the home page's "Say Hello" section.
