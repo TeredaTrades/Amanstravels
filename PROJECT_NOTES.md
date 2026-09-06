@@ -96,14 +96,13 @@ Context for whoever picks this up: this was a planning discussion, not yet
 fully executed. Some of it needs Aman to take actions we can't do on his
 behalf (same shape as the custom-domain blocker above).
 
-**Analytics — script added, needs a real site code.**
+**Analytics — done, live.**
 GoatCounter (same free, cookie-less tool used on MoneyMattersDaily) works
 fine on a static GitHub Pages site — it's just a `<script>` tag, no
-server-side code needed. The snippet is now in `index.html`'s `<head>`
-with a placeholder site code (`AMANSTRAVELS`). **Open item:** someone
-needs to sign up at https://goatcounter.com (requires an email — can't be
-done on Aman's behalf) and swap the placeholder for the real
-`https://<realcode>.goatcounter.com/count` URL.
+server-side code needed. Site is signed up at
+https://amanstravels.goatcounter.com and the real site code is wired into
+`index.html`'s `<head>`. No data yet since the page hasn't been visited
+since the script went live — check back once there's real traffic.
 
 **Revenue sequencing discussed (not yet implemented):**
 1. **Affiliate links first** — lowest lift, doesn't need traffic scale.
