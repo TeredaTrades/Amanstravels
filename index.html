@@ -195,6 +195,7 @@
 
     /* Posts (From the Blog) */
     .posts-section { margin-top: 3rem; }
+    .posts-list { display: flex; flex-direction: column; gap: 1.25rem; }
 
     .post-card {
       background: var(--card-bg);
@@ -694,11 +695,18 @@
 
       <section id="posts" class="posts-section">
         <div class="section-title">From the Blog</div>
-        <a class="post-card" href="posts/dubai-trip-cost-breakdown.html">
-          <div class="entry-location">Dubai, UAE · Trip Costs</div>
-          <h3 class="entry-title">What This Dubai Trip Actually Cost</h3>
-          <span class="entry-excerpt">A full breakdown of flights, stay, food, eSIM, and activities from the Addis Ababa → Dubai trip — real numbers, no guesswork.</span>
-        </a>
+        <div class="posts-list">
+          <a class="post-card" href="posts/dubai-trip-cost-breakdown.html">
+            <div class="entry-location">Dubai, UAE · Trip Costs</div>
+            <h3 class="entry-title">What This Dubai Trip Actually Cost</h3>
+            <span class="entry-excerpt">A full breakdown of flights, stay, food, eSIM, and activities from the Addis Ababa → Dubai trip — real numbers, no guesswork.</span>
+          </a>
+          <a class="post-card" href="posts/dubai-visa-logistics.html">
+            <div class="entry-location">Addis Ababa → Dubai · Trip Prep</div>
+            <h3 class="entry-title">Visa &amp; Logistics Notes</h3>
+            <span class="entry-excerpt">What to check before you go, what to pack, and how the Addis Ababa to Dubai route actually went.</span>
+          </a>
+        </div>
       </section>
     </main>
 

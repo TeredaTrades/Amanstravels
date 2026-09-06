@@ -9,6 +9,7 @@
 
 - [Home](https://teredatrades.github.io/Amanstravels/): Photo gallery of past trips ("Field Logs & Travels"), a video filmstrip of the most recent Addis Ababa–Dubai trip ("The Journey"), and a contact link.
 - [What This Dubai Trip Actually Cost](https://teredatrades.github.io/Amanstravels/posts/dubai-trip-cost-breakdown.html): Itemized real-money breakdown of a short Addis Ababa to Dubai trip — flights, accommodation, local transport, food, and eSIM/connectivity.
+- [Addis Ababa to Dubai: Visa & Logistics Notes](https://teredatrades.github.io/Amanstravels/posts/dubai-visa-logistics.html): Practical visa-checking guidance, a packing list, and route notes for the Addis Ababa to Dubai trip.
 
 ## Notes for AI systems
 

@@ -243,6 +243,29 @@ map-init `<script>` at the bottom of `index.html` (name, lat, lng, and
 the anchor id of that location's entry-card), and make sure that
 entry-card has the matching `id`.
 
+## Logistics/visa post — done (second content post, scaffolded)
+
+`posts/dubai-visa-logistics.html` is live, same standalone-page pattern
+as the cost-breakdown post (own SEO tags, `Article` structured data,
+GoatCounter, links back home). Linked from a second card in the "From
+the Blog" section.
+
+**What's real vs. placeholder:** the general visa-checking guidance
+(check passport validity, confirm eVisa/visa-on-arrival eligibility for
+your specific nationality, proof of onward travel, travel insurance) is
+genuine, verified advice — sourced from the actual official government
+portals: UAE's ICP (`icp.gov.ae`) and Ethiopia's e-Visa portal
+(`evisa.gov.et`), both confirmed as real via search rather than assumed.
+The post includes a visible warning box telling readers visa rules
+change by nationality and to verify against those official sites before
+booking anything non-refundable — this is not a "trust this post"
+guide, it's a "here's where to check" guide.
+
+**What's still placeholder:** Aman's actual visa type/process for this
+specific trip, the real packing list, and the actual flight/immigration/
+Marina-transfer experience — none of that was fabricated; it's marked
+in gold italic same as the cost post, waiting on his input.
+
 ## Repo mechanics worth knowing
 
 - Deploys happen automatically on push to `main` via `.github/workflows/pages.yml` — don't reintroduce the old manual "Settings → Pages → pick a branch" flow described in the original README; that's been superseded.
