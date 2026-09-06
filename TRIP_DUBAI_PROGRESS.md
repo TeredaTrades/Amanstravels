@@ -75,24 +75,33 @@ scaled down to 720×1280 for web, muted (no audio track), had metadata stripped,
 All outputs: H.264, yuv420p, ~720×1280, no audio, `+faststart` for web streaming, crf 26 (small file
 sizes, 0.4–2.3MB each — see actual sizes in `assets/videos/`).
 
-The 4 batch-1 photos have **not** been processed or committed yet (no EXIF-strip/resize pass done on
-them) — still just sitting in the chat upload, not in this repo. They're strong candidates to extend
-the existing 8-photo gallery in `index.html` (see `PROJECT_NOTES.md` for the naming convention:
-`assets/photoN-<slug>-<width>.<jpg|webp>`).
+**Batch-1 photos — done, 3 of 4 committed.** The marina promenade, marina skyline (blue hour), and
+marina boat/jet-ski photos were auto-trimmed (they came in as screenshots with black letterboxing top
+and bottom — real photo content only in the middle band), EXIF-stripped, and exported at 1600/800/480
+widths in JPG + WebP, same as the original 8. They're now `photo9-marina-promenade`,
+`photo10-marina-skyline-bluehour`, and `photo11-marina-boat` in `assets/`, with untouched
+(post-trim, pre-resize) originals in `assets/originals/`. All 3 are wired into new entry-cards at the
+top of the `index.html` gallery (ahead of the old Addis-arrival entry), and the hero status badge and
+sidebar bio were updated to reflect Dubai/UAE as the most recent stop.
+
+The 4th batch-1 photo — the in-flight display screen (distance/altitude/speed) — was **deliberately
+left out** of the public gallery, per the earlier call to hold it back since it's a real device screen;
+it's still sitting unprocessed in the chat upload only, fine to pull into a future YouTube
+behind-the-scenes cut if wanted.
 
 ## Not yet done / open items
 
 - **All 3 batches now received and processed** — 8 clips total, full story arc (Addis takeoff → Dubai
   descent/landing → the stay → Dubai takeoff) is complete in `assets/videos/`. No more batches expected
   unless Aman says otherwise.
-- **Batch 1 photos** — need the same EXIF-strip + multi-width JPG/WebP export treatment as the
-  existing 8 gallery photos before they can go in `index.html`.
-- **Site integration** — `index.html` doesn't yet have anywhere to embed video. Need to decide: new
-  "mini videos" section (ideally ordered as the story arc above), or slot clips into the existing
-  entry-card gallery layout alongside stills? Nothing built yet — just raw processed clips sitting in
-  `assets/videos/`.
-- **Hero image decision** — the marina waterfront boat/jet-ski photo (batch 1) was flagged as the
-  strongest still; not yet formally chosen as anything.
+- **All batch-1 photos processed** — 3 of 4 committed to the gallery (see above); the 4th (in-flight
+  screen) intentionally held back from the public site.
+- **Site integration — video section design decided, not yet built.** Recommended approach (pending
+  Aman's confirmation): a new "The Journey" section between the hero and the About card, structured as
+  a horizontal-scroll filmstrip of all 8 clips in story order (takeoff → descent → landing → stay →
+  takeoff), each with a one-line caption, autoplay-muted-loop on scroll-into-view like a social media
+  story reel rather than individual click-to-play embeds. Keeps the existing entry-card gallery
+  untouched/unchanged. Nothing built yet — just the recommendation.
 - **YouTube full-length compilation** — not started; no footage has been assembled into a longer cut
   yet. Now that the full story arc is confirmed, this compilation would likely follow the same
   1→5 beat order laid out above, just uncompressed/full-length/unmuted versions of the same source clips.

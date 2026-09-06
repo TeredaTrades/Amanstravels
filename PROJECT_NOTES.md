@@ -15,18 +15,25 @@ https://teredatrades.github.io/Amanstravels/
 No manual steps needed to publish — just push to `main` and the workflow builds and deploys.
 
 **Gallery photos — done (real photos, from Aman's actual trips).**
-`index.html` has an 8-photo gallery with `<picture>`/`srcset` markup wired to specific filenames and alt text. The 8 photos live in `assets/` as real images (sourced from Aman's own Snapchat memories, cropped to remove the app's UI chrome, EXIF-stripped, and exported at 1600/800/480px widths in both JPG and WebP):
+`index.html` has an 11-photo gallery with `<picture>`/`srcset` markup wired to specific filenames and alt text. The photos live in `assets/` as real images, EXIF-stripped and exported at 1600/800/480px widths in both JPG and WebP:
 
-- `photo1-botero` — Botero Museum, Bogotá (still-life painting)
-- `photo2-monserrate` — Camino Peatonal de Monserrate trail sign, Bogotá
-- `photo3-el-dorado` — El Dorado Airport apron, Bogotá
-- `photo4-le-carre` — Le Carré d'As club, Liège
-- `photo5-parisian` — The Parisian, Macao (night)
-- `photo6-mirador-norte` — Mirador al Norte padlock fence, Monserrate, Bogotá
-- `photo7-la-pecera` — La Pecera street, Madrid
+- `photo11-marina-boat` — boat + jet skis, Dubai Marina waterway (newest — top of gallery)
+- `photo9-marina-promenade` — Dubai Marina promenade at dusk
+- `photo10-marina-skyline-bluehour` — Dubai Marina skyline, blue hour
 - `photo8-addis-aerial` — aerial view over Addis Ababa
+- `photo5-parisian` — The Parisian, Macao (night)
+- `photo4-le-carre` — Le Carré d'As club, Liège
+- `photo7-la-pecera` — La Pecera street, Madrid
+- `photo2-monserrate` — Camino Peatonal de Monserrate trail sign, Bogotá
+- `photo6-mirador-norte` — Mirador al Norte padlock fence, Monserrate, Bogotá
+- `photo1-botero` — Botero Museum, Bogotá (still-life painting)
+- `photo3-el-dorado` — El Dorado Airport apron, Bogotá
 
-Untouched originals (post-crop, pre-resize) are kept in `assets/originals/` per the workflow `ASSETS_README.md` originally described.
+The original 8 were sourced from Aman's own Snapchat memories, cropped to remove the app's UI chrome. The 3 newest (`photo9`–`photo11`) came in as screenshots with black letterboxing top/bottom and were auto-trimmed to the real photo content before the same EXIF-strip/resize treatment — see `TRIP_DUBAI_PROGRESS.md` for the full Dubai-trip processing log (including 8 short mini-videos in `assets/videos/` not yet wired into the page).
+
+Untouched originals (post-crop/trim, pre-resize) are kept in `assets/originals/` per the workflow `ASSETS_README.md` originally described.
+
+**Hero status badge** — manually maintained, currently reads "Dubai, UAE" (updated from "Addis Ababa, Ethiopia" when the Marina photos were added as the new top entry). Keep this in sync with whichever entry-card is newest.
 
 **About "Snapshot" image — done.** Now uses the real `photo6-mirador-norte` gallery photo instead of the old dangling `assets/sample-photo.jpg` placeholder (that file never actually existed in the repo).
 
