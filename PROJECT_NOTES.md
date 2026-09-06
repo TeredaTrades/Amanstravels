@@ -243,6 +243,21 @@ map-init `<script>` at the bottom of `index.html` (name, lat, lng, and
 the anchor id of that location's entry-card), and make sure that
 entry-card has the matching `id`.
 
+**Bug found and fixed:** the map shipped blank (empty bordered box, no
+tiles, no pins) — the Leaflet CSS/JS `integrity` (SRI) hashes originally
+used were fabricated from memory rather than verified, so they didn't
+match the real cdnjs files and the browser silently blocked both the
+stylesheet and script from loading (no console-visible error to the
+end user, just nothing rendering). Fixed by switching to unpkg's
+Leaflet 1.9.4 CDN links with the exact `integrity` hashes published on
+leafletjs.com's own download page — verified by fetching that page
+directly rather than trusting memory a second time. Also added a
+`map.invalidateSize()` safety call ~300ms after init, since Leaflet
+maps can occasionally render blank tiles if the container's final size
+isn't settled at creation time. **Lesson for next time:** never hand-type
+an SRI hash from memory — either omit `integrity` entirely or pull the
+exact string from the library's own docs/page first.
+
 ## Logistics/visa post — done (second content post, scaffolded)
 
 `posts/dubai-visa-logistics.html` is live, same standalone-page pattern
