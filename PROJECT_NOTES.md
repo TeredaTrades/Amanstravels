@@ -533,3 +533,27 @@ on later without redesigning anything.
   SITE_RESTRUCTURE_NOTES.md's existing Formspree section for the full
   detail — one shared form ID, both pages, distinguished by a hidden
   `_subject` field).
+
+## Formspree wired up + post-submit confirmation (same session)
+
+User created a Formspree form and sent the ID (`xwlkynek`). Wired it into
+both `subscribe.html` and `contact.html` (shared form, told apart by the
+existing hidden `_subject` field — this was already built for that, just
+needed the real ID).
+
+Also closed the `_next` open item noted in SITE_RESTRUCTURE_NOTES.md: added
+a hidden `_next` field on both forms pointing back to the same page with
+`?sent=1`, plus a `.form-success` banner + `site.js` check that swaps the
+empty form out for a confirmation message when that flag is present.
+
+**Bug caught in my own first pass**: setting the `hidden` attribute via JS
+didn't actually hide `.site-form`, because the class's explicit
+`display:flex` beat the browser's default `[hidden]{display:none}` in the
+cascade (author styles always win over the user-agent stylesheet regardless
+of specificity). Fixed with an explicit `.site-form[hidden]{display:none}`
+rule. Verified with a local render before pushing: banner shows, form
+hides, no overflow/layout issues.
+
+Bumped the `?v=` cache-busting tag on all 8 pages to this session's commit
+SHA per the convention noted earlier — both deploys confirmed successful
+via the Actions API.
