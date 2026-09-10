@@ -601,3 +601,30 @@ brought in line with the new wording too.
 
 No shared template/partial for the sidebar — each page carries its own
 copy of the markup, so this had to be a 5-file find-and-replace.
+
+## "Meet the Travelers" — shared template + landing-page-only (2026-09-10, follow-up)
+
+Follow-up to the bio rewrite above, per user request:
+
+1. **Made it a shared template.** This is a static site with no build step
+   (see SITE_RESTRUCTURE_NOTES.md), so there's no server-side/build-time
+   include. Went with the same pattern already used for the rotating
+   Snapshot widget: the markup now lives in ONE place, a guarded IIFE in
+   `js/site.js` that injects the widget's HTML into
+   `<div id="meet-travelers-widget"></div>` on load. Edit the bio copy in
+   `js/site.js` going forward, not in page markup. To reuse the widget on
+   another page later, just add that placeholder div to its sidebar —
+   `site.js` is already loaded on every page and the IIFE is a no-op where
+   the placeholder isn't present.
+2. **Landing-page only.** Removed the widget entirely (markup + placeholder)
+   from `posts.html`, `gallery.html`, `subscribe.html`, `contact.html`. It
+   now only renders on `index.html`.
+3. **Updated `about.html`.** Its "Meet the Travelers" section is separate,
+   full-content prose (not the sidebar widget — see SITE_RESTRUCTURE_NOTES.md
+   for why it's split out), so it wasn't touched by the shared-template
+   change. Reworded its paragraph to match the new sidebar copy for
+   consistency across the site.
+
+Verified with a quick jsdom render: widget injects correctly on
+`index.html`, and the placeholder/widget markup is absent (correct no-op)
+on the other 4 pages and on `about.html`.

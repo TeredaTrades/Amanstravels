@@ -1,3 +1,22 @@
+// Sidebar "Meet the Travelers" widget: single shared template, injected via
+// JS since this is a static site with no build step (see
+// SITE_RESTRUCTURE_NOTES.md — there's no server-side/build-time include
+// mechanism here). To reuse this widget on another page, just add
+// <div id="meet-travelers-widget"></div> in that page's sidebar and make
+// sure js/site.js is loaded — it's already included on every page. Edit
+// the bio copy here, in ONE place, rather than in page markup.
+// Safe on any page — no-op if the placeholder isn't present.
+(function () {
+  var target = document.getElementById('meet-travelers-widget');
+  if (!target) return;
+  target.innerHTML =
+    "<div class='widget author-box'>" +
+      "<div class='author-img'>A</div>" +
+      "<h3>Meet the Travelers</h3>" +
+      "<p>This is a small group of friends who travel often — for work and for fun, sometimes solo and sometimes together. They love documenting and photographing the road, and they're all-in on the travel life. Every post, photo, and clip on this site comes from those trips. Aman does most of the traveling, and everyone pitches in on the writing for their own journeys.</p>" +
+    "</div>";
+})();
+
 // Sidebar "Snapshot" widget: rotates through a curated set of photos every
 // 2 days. The pick is based on the date (days-since-epoch / 2), not random,
 // so every visitor sees the same photo on a given day and it doesn't change
