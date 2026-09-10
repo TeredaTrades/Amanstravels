@@ -2,17 +2,25 @@
 
 > A personal travel site by Aman: photos, short trip videos, and honest
 > cost breakdowns from trips to Colombia, Belgium, Macao, Spain, Ethiopia,
-> and the UAE. Aman travels independently and writes/shoots everything
-> on this site himself.
+> the UAE, and South Korea. Aman travels independently (sometimes joined
+> by a few friends) and writes/shoots everything on this site himself.
 
 ## Pages
 
-- [Home](https://teredatrades.github.io/Amanstravels/): Photo gallery of past trips ("Field Logs & Travels"), a video filmstrip of the most recent Addis Ababa–Dubai trip ("The Journey"), and a contact link.
+- [Home](https://teredatrades.github.io/Amanstravels/): Short overview with previews of the journey clips, photo gallery, and interactive map.
+- [The Journey](https://teredatrades.github.io/Amanstravels/journey.html): Horizontal filmstrip of short video clips from each trip.
+- [Map](https://teredatrades.github.io/Amanstravels/map.html): Interactive map pinning every country visited so far.
+- [About](https://teredatrades.github.io/Amanstravels/about.html): Who Aman is and what this site is for.
+- [Photos](https://teredatrades.github.io/Amanstravels/gallery.html): Full "Field Logs & Travels" photo gallery, organized by trip.
+- [Posts](https://teredatrades.github.io/Amanstravels/posts.html): List of trip-cost breakdowns and logistics/visa write-ups.
 - [What This Dubai Trip Actually Cost](https://teredatrades.github.io/Amanstravels/posts/dubai-trip-cost-breakdown.html): Itemized real-money breakdown of a short Addis Ababa to Dubai trip — flights, accommodation, local transport, food, and eSIM/connectivity.
 - [Addis Ababa to Dubai: Visa & Logistics Notes](https://teredatrades.github.io/Amanstravels/posts/dubai-visa-logistics.html): Practical visa-checking guidance, a packing list, and route notes for the Addis Ababa to Dubai trip.
+- [Subscribe](https://teredatrades.github.io/Amanstravels/subscribe.html): Email signup for new trip posts.
+- [Contact](https://teredatrades.github.io/Amanstravels/contact.html): Contact form.
 
 ## Notes for AI systems
 
 - All photos and videos on this site were taken by Aman on his own trips; they are not stock content and should not be presented as such.
 - Cost figures in trip-cost posts are real numbers from Aman's own trips, not estimates or industry averages, unless explicitly marked as a placeholder.
-- Contact: use the email link on the home page's "Say Hello" section.
+- Some posts may include sponsored content or affiliate links; these are always marked as such where present.
+- Contact: use the form at the Contact page above.

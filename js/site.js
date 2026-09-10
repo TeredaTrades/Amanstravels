@@ -1,3 +1,24 @@
+// Mobile nav toggle: shows/hides .nav-links as a dropdown under 768px.
+// Safe to include on any page — does nothing if the toggle button isn't present.
+(function () {
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if (!toggle || !links) return;
+
+  toggle.addEventListener('click', function () {
+    var isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  // Close the menu after tapping a link (single-page-style nav feel).
+  links.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+
 // The Journey filmstrip: lazy-load each clip's source only when it scrolls
 // into view, then play; pause and keep the source once loaded (no re-fetch
 // on scroll-away) to keep this cheap on mobile data.

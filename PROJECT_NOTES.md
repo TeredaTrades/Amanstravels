@@ -436,3 +436,45 @@ along the way" without naming anyone. JSON-LD `author` stays as just Aman
   actual product/service to feature — same block is duplicated across
   6 files (no shared include, same as nav/footer), so update all of
   them together.
+
+## SEO/AEO sync + mobile nav fix + domain-migration prep (this session)
+
+Picked this up mid-restructure and found `sitemap.xml` and `llms.txt` had gone
+stale after the single-page → 8-page split: both still only listed the old
+3-URL set (home + 2 posts), missing `journey.html`, `map.html`, `about.html`,
+`gallery.html`, `posts.html`, `subscribe.html`, `contact.html`. Search engines
+and AI crawlers reading either file would have no idea 7 of the site's 10
+pages exist. Fixed:
+
+- **`sitemap.xml`**: now lists all 10 pages with sensible `changefreq`/
+  `priority` (gallery/home weekly since they grow, posts yearly since old
+  posts don't change, subscribe/contact low priority).
+- **`llms.txt`**: rewritten to describe the current 8-page structure instead
+  of the old single-scroll layout, and to reflect current framing (Aman +
+  unnamed friends, not solo/not the group-with-names version).
+- Per-page SEO (canonical, OG, Twitter Card, JSON-LD) was already correct on
+  every page — this wasn't broken, just the two crawler-discovery files.
+
+**Mobile nav was broken**: `.nav-links` had no `@media` handling at all — 7
+links plus the logo in one `display:flex` row with no wrap would overflow or
+crush together on phone widths. Added a CSS-only hamburger toggle
+(`.nav-toggle`, no icon font/JS library) that collapses `.nav-links` into a
+dropdown under 768px, plus a small `site.js` IIFE (guarded, safe on every
+page) to open/close it and auto-close on link tap. Applied to all 8 shared-
+layout pages; the two standalone post pages only have a 3-link nav and don't
+need it.
+
+**Domain migration**: no config was in place for this (58 hardcoded
+`teredatrades.github.io/Amanstravels` URLs across canonical/OG/Twitter/
+JSON-LD/sitemap/robots/llms.txt — expected for a static site with no build
+step). Added `scripts/set-domain.sh <newdomain.com>` — a one-command sed pass
+that swaps every occurrence and writes the `CNAME` file GitHub Pages needs.
+Doesn't touch DNS or GitHub Pages settings (those are manual, see the
+script's header comment) — just makes the code-side swap a single command
+instead of a manual find/replace across 10+ files.
+
+**Ads**: no ad infrastructure exists yet (no AdSense, no ad-slot markup) —
+confirmed via repo-wide search. The footer disclaimer already has language
+reserved for "sponsored content or affiliate links" from an earlier session,
+but that's copy, not a slot. Not added anything here since there's no ad
+network/product picked yet — flagging so it's not mistaken for done.
