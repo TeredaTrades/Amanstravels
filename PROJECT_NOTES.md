@@ -698,3 +698,64 @@ they're easy to revert individually if needed:
   are intentionally kept in sync by hand (no shared source between them,
   since they live in different places for different reasons) — if the
   bio changes again, both spots need editing.
+
+## Session — 2026-09-11: post-page CSS consolidation, 404 page, map a11y
+
+Picked this up with a fresh GitHub PAT from the user. Important context for
+next time: a prior session had reportedly done most of this work
+(post-page stylesheet conversion, an accessibility pass, and was
+mid-build on a 404 page) but got cut off before committing anything — and
+since that session's working directory wasn't persisted anywhere, none of
+it actually existed in the repo. Cloned fresh, confirmed the working tree
+matched the last real commit (nothing pending), and redid the work
+against the actual current state rather than assuming the described work
+was there. **Lesson for future sessions: uncommitted work doesn't survive
+between sessions — commit and push incrementally rather than batching a
+long list of changes for one big commit at the end.**
+
+Four commits, each independently revertable:
+
+1. **Post pages onto the shared stylesheet.** `posts/dubai-trip-cost-breakdown.html`
+   and `posts/dubai-visa-logistics.html` no longer duplicate `:root` vars +
+   ~90 lines of inline CSS each — that now lives once in `css/style.css`,
+   scoped under `main.post-page-main`, `.post-article`, `.post-header` /
+   `.post-kicker` / `.post-meta` / `.post-intro`, `table.cost-table`,
+   `.note-box` / `.warn-box`, `.checklist`, `.back-link`. None of these
+   names collided with anything already in the shared stylesheet or other
+   pages — checked before adding. Files went from 237/244 lines to ~150
+   each. Caught a real bug while doing this: the shared stylesheet's
+   mobile-nav CSS hides `.nav-links` under 768px unless a `.nav-toggle`
+   button is present, and neither post page had one — their nav would've
+   been invisible on mobile once `css/style.css` was linked. Added the
+   toggle button (and the `js/site.js` script tag, which already handles
+   it) to both. Verified the toggle actually works with a scripted jsdom
+   test (injected `site.js`, dispatched a click, confirmed `.nav-links`
+   got the `.open` class and `aria-expanded` flipped to `true`) on both
+   files before committing.
+2. **404 page.** `404.html`, matching the `.page-header` pattern used on
+   every inner page (nav, header, footer). GitHub Pages serves this
+   automatically for unmatched paths on a project site — no config
+   needed. `noindex`'d.
+3. **Map accessibility fallback.** `map.html`'s Leaflet map had no
+   accessible fallback — screen readers / no-JS crawlers just saw an
+   empty div. Added `aria-label` on the map container and a
+   visually-hidden (`.sr-only`, new utility class) text list of all 7
+   stops linking to their gallery entries. Verified all 7 anchor IDs
+   (`#entry-korea`, `#entry-dubai`, etc.) exist in `gallery.html` before
+   wiring the links — they did. Also re-ran the alt-text / form-label /
+   heading-structure checks sitewide while in here: all clean (alt text
+   present on every real `<img>`, the only "missing" hits were inside
+   HTML comments; form labels correctly `for`-associated on both forms;
+   exactly one `<h1>` per page across all 10 HTML files). No changes
+   needed for any of that.
+4. **Cache-busting bump to `?v=abb0a1a4`** across every page that
+   references `css/style.css` or `js/site.js`, since this session changed
+   both.
+
+**Still open:**
+- Everything in SITE_RESTRUCTURE_NOTES.md's "Open items" except the
+  post-page CSS duplication, which is now resolved.
+- The post pages' nav only has 3 links (Home/Posts/Contact) vs. the
+  7-link nav on every other page — left as-is since it predates this
+  session and expanding it wasn't part of this ask, but worth asking the
+  user about if a full-nav pass ever happens.

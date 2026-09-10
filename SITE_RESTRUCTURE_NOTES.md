@@ -87,7 +87,7 @@ Also folded into this pass, per the user's request: the site now frames itself a
 
 - **Formspree form ID still needed** — nothing will submit until the user provides one (see above).
 - No `_next` redirect configured for either form yet (see above).
-- The standalone post pages (`posts/dubai-*.html`) still duplicate the site's CSS variables in their
-  own `<style>` block rather than using `css/style.css`. Left as-is since they were already built
-  that way before this session and converting them wasn't part of this ask — but worth doing if a
-  third post ever gets added, to avoid a third copy of the same `:root` variables.
+- ~~The standalone post pages duplicate the site's CSS variables~~ — resolved, see
+  PROJECT_NOTES.md's 2026-09-11 session entry. Both post pages now use `css/style.css`; a third
+  post can reuse the same `.post-page-main`/`.post-article` classes instead of starting a new
+  inline `<style>` block.
