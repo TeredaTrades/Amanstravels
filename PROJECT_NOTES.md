@@ -557,3 +557,29 @@ hides, no overflow/layout issues.
 Bumped the `?v=` cache-busting tag on all 8 pages to this session's commit
 SHA per the convention noted earlier — both deploys confirmed successful
 via the Actions API.
+
+## Rotating Snapshot widget (same session)
+
+Per the user: wanted the sidebar "Snapshot" widget photo to change every
+couple of days instead of being permanently pinned to the Bogotá padlock
+fence photo. Since this is a static site with no backend/database, did it
+client-side in `site.js`: a curated pool of 15 photos (one or two per trip,
+skipping `photo12` — the cable-car ticket close-up, not really a "snapshot"
+in the same style) with alt text and captions pulled from `gallery.html`.
+
+**Rotation logic**: `Math.floor(daysSinceEpoch / 2) % pool.length` — picks
+by date, not randomly, so it changes every 2 days and every visitor sees
+the same photo on a given day (no flicker/inconsistency on reload). The
+HTML markup is untouched and still ships with the original Bogotá photo
+hardcoded — that's the no-JS/crawler fallback; the script swaps it out
+after load. Runs on all 6 pages that have the sidebar (same `.snapshot-widget`
+selector everywhere).
+
+Verified by mocking the browser's `Date` forward 2 days in a headless
+render and confirming the pick changed. To change the rotation cadence,
+edit `ROTATE_EVERY_N_DAYS` near the top of that block in `js/site.js`. To
+add/remove photos from the pool, edit the `photos` array in the same block
+— each entry needs `slug` (matching the `assets/photoN-slug` naming
+convention), `sizes` (which width variants actually exist — most trip
+photos go up to 1600, the four newest Seoul ones only to 800), `alt`, and
+`caption`.
