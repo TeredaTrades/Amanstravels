@@ -809,3 +809,107 @@ footer .disclaimer {
 footer .footer-links { margin-top: 0.75rem; }
 footer .footer-links a { color: #d1e0d7; text-decoration: underline; margin: 0 0.5rem; font-size: 0.82rem; }
 footer .footer-links a:hover { color: var(--accent); }
+
+/* Visually-hidden but screen-reader/no-JS-crawler accessible content.
+   Use for content that duplicates a visual widget (e.g. a map) in a
+   non-visual form, rather than hiding it entirely. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Standalone post pages (posts/*.html) — previously each post duplicated
+   this whole block (plus the shared :root vars, nav, and footer rules
+   already defined above) in its own inline <style>. Consolidated here so
+   there's one copy of the post-reading styles instead of one per post.
+   Everything below is scoped to these post-specific selectors/classes so
+   it can't leak onto other page types (gallery cards, home page link
+   cards, etc. use their own class names, so there's no overlap). */
+main.post-page-main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3rem 5% 4rem;
+}
+main.post-page-main a { color: var(--accent); }
+
+.post-header { margin-bottom: 2rem; }
+.post-kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.post-header h1 { font-size: 2rem; color: var(--primary); margin: 0.5rem 0; line-height: 1.25; }
+.post-meta { color: var(--text-muted); font-size: 0.9rem; }
+
+.post-intro { font-size: 1.05rem; margin: 1.5rem 0; }
+
+.post-article h2 {
+  color: var(--primary);
+  font-size: 1.3rem;
+  margin: 2rem 0 0.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.post-article h3 {
+  color: var(--primary);
+  font-size: 1.05rem;
+  margin: 1.25rem 0 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.post-article p { margin-bottom: 1rem; }
+.post-article ul, .post-article ol { margin: 0 0 1.25rem 1.4rem; }
+.post-article li { margin-bottom: 0.4rem; }
+
+table.cost-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.95rem;
+}
+table.cost-table th, table.cost-table td { text-align: left; padding: 0.6rem 0.5rem; border-bottom: 1px solid var(--border); }
+table.cost-table th { color: var(--primary); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+table.cost-table tfoot td { font-weight: 700; color: var(--primary); border-top: 2px solid var(--primary); border-bottom: none; }
+
+.placeholder { color: var(--accent); font-style: italic; }
+
+.note-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin: 1.5rem 0;
+}
+.warn-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid #b3401f;
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  margin: 1.5rem 0;
+}
+
+.checklist { list-style: none; margin-left: 0; }
+.checklist li { padding-left: 1.6rem; position: relative; }
+.checklist li::before { content: "☐"; position: absolute; left: 0; color: var(--accent); }
+
+.back-link {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.9rem;
+}
