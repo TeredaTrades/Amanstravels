@@ -1,0 +1,8 @@
+# ads.txt — Authorized Digital Sellers file.
+# Not active yet: no ad network is set up on this site.
+#
+# Once an ad network (e.g. Google AdSense) is added, it will give you a
+# line to paste here, looking like:
+#   google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+# Add that line below. Until then, leave this file as-is (comments only —
+# ad networks and crawlers won't flag an empty/comment-only ads.txt).

@@ -503,3 +503,33 @@ commit's short SHA** (`git rev-parse --short=8 HEAD` after committing) —
 otherwise this doesn't do anything. Worth automating in the GitHub Actions
 workflow later (e.g. a build step that stamps the current SHA in) if this
 becomes a chore.
+
+## Ad slots scaffolded (not live) + Formspree walkthrough given (same session)
+
+Per the user: no ad network chosen yet, just wants the option ready to flip
+on later without redesigning anything.
+
+- **`.ad-slot` CSS component** added to `css/style.css` (two variants:
+  `.ad-slot--sidebar`, roughly a 300x250 medium-rectangle footprint;
+  `.ad-slot--content`, a 728px-max in-content banner) plus the same rules
+  duplicated into both post pages' inline `<style>` blocks (they don't share
+  `css/style.css` — same pattern as everything else in those two files).
+- **Placement markup added but commented out** on all 6 sidebar pages
+  (index/about/gallery/posts/subscribe/contact — right after the "Aman
+  Approved" widget) and both post pages (before the final section). Nothing
+  renders until the HTML comment is removed.
+- **To activate a slot**: uncomment the `<div class="widget ad-slot
+  ad-slot--sidebar">...</div>` (or `ad-slot--content` for posts) and paste
+  either an ad network's unit/script code, or an affiliate banner
+  `<a><img></a>`, in place of the placeholder `<span class="ad-label">`.
+  Same duplication caveat as nav/footer — no shared include, so do this on
+  every page a slot should appear on.
+- **`ads.txt`** added at repo root, comments-only for now — needed by
+  networks like AdSense once one is chosen; the file itself is safe to ship
+  empty/comment-only in the meantime.
+- **Formspree**: still not wired up (user doesn't have a form ID yet) —
+  walked them through creating one. Once they send the ID, replace
+  `YOUR_FORM_ID` in `subscribe.html` and `contact.html` (see
+  SITE_RESTRUCTURE_NOTES.md's existing Formspree section for the full
+  detail — one shared form ID, both pages, distinguished by a hidden
+  `_subject` field).

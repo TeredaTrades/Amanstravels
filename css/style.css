@@ -435,6 +435,44 @@
   font-style: italic;
 }
 
+/* Ad slot — scaffolded, not live. Two variants: sidebar (roughly a
+   medium-rectangle footprint, 300x250-ish) and in-content (full-width
+   banner, for between blog post sections). Both are commented out in the
+   HTML by default — see PROJECT_NOTES.md "Ad slots" for how to activate
+   one once there's an actual ad network or affiliate banner to place. */
+.ad-slot {
+  background: var(--card-bg);
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+}
+.ad-slot .ad-label {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+.ad-slot--sidebar {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ad-slot--content {
+  min-height: 90px;
+  margin: 2rem auto;
+  max-width: 728px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
     /* Newsletter widget */
     .newsletter-widget p { font-size: 0.85rem; margin-bottom: 1rem; color: var(--text-dark); }
     .newsletter-form { display: flex; flex-direction: column; gap: 0.6rem; }
