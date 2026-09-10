@@ -136,6 +136,19 @@
       gap: 2.5rem;
     }
 
+    /* Grid items default to min-width:auto, which means they won't shrink
+       below the intrinsic width of their content — a fixed-width flex row
+       like .journey-strip (meant to scroll internally via overflow-x:auto)
+       will instead stretch the whole grid track to fit it, pushing the
+       sidebar off-screen and forcing horizontal scroll on the whole page.
+       min-width:0 lets the column shrink to the grid track's actual size
+       so the internal scroll works as intended. */
+    .container > main,
+    .container > .sidebar {
+      min-width: 0;
+    }
+
+
     .section-title {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-size: 1.1rem;
