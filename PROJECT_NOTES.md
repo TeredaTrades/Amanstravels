@@ -806,3 +806,47 @@ content plan, plus two fixes. Findings:
     (would need to opt into that in GoatCounter's settings, or Aman
     shares a screenshot/export). Worth doing before any display-ad
     decision, as previously noted.
+
+## Session — 2026-09-11 (continued): traffic check-in + affiliate research
+
+**Traffic check-in.** User shared a GoatCounter screenshot (2026-08-31 to
+2026-09-11, 15 total visits). Read: 87% Ethiopia, referrers split between
+"(unknown)"/direct, the site's own GitHub Pages URL, and one Telegram
+link — reads as the user (and people personally sent links) testing the
+site, not organic traffic yet. Doesn't change the earlier display-ad
+conclusion (Ezoic's 250K/month floor, AdSense/Media.net as the no-real-
+minimum fallback) — still far too early either way.
+
+**Affiliate program requirements — researched each program's actual
+current signup process rather than relying on memory, since terms/signup
+flows change:**
+
+- **SafetyWing (Ambassador Program)** — no minimum audience required
+  (their own page states this explicitly). Free, ~5-minute application,
+  approval is largely automatic. Straightforward, apply anytime.
+- **Airalo** — "no matter your following, niche, or platform" per their
+  program page. Free, no setup cost. Straightforward, apply anytime.
+- **GetYourGuide** — open to any travel blog/site with genuine editorial
+  content (which this site has); no stated traffic minimum. Prohibits
+  explicit/political content and fraud-adjacent traffic sources —
+  nothing here runs afoul of that. Straightforward, apply anytime.
+- **Amazon Associates** — application itself is easy (just needs an
+  Amazon account + tax/payment info), but approval is conditional: a
+  **180-day trial period requiring at least 3 qualifying sales**, or
+  Amazon closes the account. With current traffic near zero, applying
+  now risks starting that 180-day clock before there's an audience to
+  convert. **Recommendation: hold off until there's steadier traffic**,
+  or time the application to launch alongside a real content/traffic push.
+- **Booking.com** — no longer has a simple direct "apply on our site"
+  flow; now routes through third-party affiliate networks (Awin, CJ/
+  Commission Junction, and others), each with its own signup and
+  approval process, sometimes pickier than the direct programs above.
+  Doable, but needs picking a network first — more friction than the
+  other four.
+
+**Net advice given:** SafetyWing, Airalo, and GetYourGuide have no real
+barrier to signing up today. Amazon Associates is worth waiting on until
+there's traffic to realistically hit 3 sales in 180 days. Booking.com
+needs a network chosen before it's a one-step signup. None of this can
+be done by Claude directly — all five need the account holder's own
+name/payment/tax details.
