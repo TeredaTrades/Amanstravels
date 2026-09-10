@@ -57,8 +57,12 @@
       <section class="form-card">
         <h2>New Stop Alerts</h2>
         <p>Get an email whenever there's a new destination, post, or set of photos.</p>
-        <form class="site-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-success" hidden>
+          <p>✅ You're on the list — watch your inbox for the next update.</p>
+        </div>
+        <form class="site-form" action="https://formspree.io/f/xwlkynek" method="POST">
           <input type="hidden" name="_subject" value="New newsletter signup — Aman's Travels" />
+          <input type="hidden" name="_next" value="https://teredatrades.github.io/Amanstravels/subscribe.html?sent=1" />
           <div>
             <label for="sub-email">Email address</label>
             <input type="email" id="sub-email" name="email" placeholder="you@example.com" required />

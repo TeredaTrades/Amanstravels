@@ -1,3 +1,15 @@
+// Post-submit confirmation: after Formspree redirects back via the form's
+// _next field (?sent=1 in the URL), show the page's .form-success message
+// and hide the form itself instead of leaving the empty inputs visible.
+// Safe on any page — no-op if the query flag or the elements aren't present.
+(function () {
+  if (!/[?&]sent=1(&|$)/.test(window.location.search)) return;
+  var success = document.querySelector('.form-success');
+  var form = document.querySelector('.site-form');
+  if (success) success.hidden = false;
+  if (form) form.hidden = true;
+})();
+
 // Mobile nav toggle: shows/hides .nav-links as a dropdown under 768px.
 // Safe to include on any page — does nothing if the toggle button isn't present.
 (function () {
