@@ -478,3 +478,28 @@ confirmed via repo-wide search. The footer disclaimer already has language
 reserved for "sponsored content or affiliate links" from an earlier session,
 but that's copy, not a slot. Not added anything here since there's no ad
 network/product picked yet — flagging so it's not mistaken for done.
+
+## Sidebar-overflow fix confirmed + cache-busting added (same session)
+
+Confirmed the min-width:0 fix actually resolves the overflow — measured
+`document.documentElement.scrollWidth` vs `clientWidth` in a headless
+render at 1512/1280/1060/900px, all came back with 0px difference (was
+previously wider than the viewport, which is what pushed the sidebar
+off-screen). The GitHub Actions deploy for that fix also completed
+successfully. If it's still not visible after a real deploy, it's a
+browser/CDN cache issue, not a live bug — hard refresh (Ctrl/Cmd+Shift+R)
+clears it.
+
+To stop that exact confusion from recurring: added `?v=<short-commit-sha>`
+to every page's `css/style.css` and `js/site.js` link/script tag (all 8
+shared-layout pages). Browsers treat a changed query string as a new file,
+so this forces a fresh fetch whenever either file actually changes instead
+of serving a stale cached copy.
+
+**Maintenance note**: since there's no build step, this version string is
+static text and needs a manual bump. **Whenever `css/style.css` or
+`js/site.js` changes, update the `?v=` value on all 8 pages to the new
+commit's short SHA** (`git rev-parse --short=8 HEAD` after committing) —
+otherwise this doesn't do anything. Worth automating in the GitHub Actions
+workflow later (e.g. a build step that stamps the current SHA in) if this
+becomes a chore.
