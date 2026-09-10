@@ -583,3 +583,21 @@ add/remove photos from the pool, edit the `photos` array in the same block
 convention), `sizes` (which width variants actually exist — most trip
 photos go up to 1600, the four newest Seoul ones only to 800), `alt`, and
 `caption`.
+
+## Sidebar "Meet the Travelers" bio rewrite (2026-09-10)
+
+Rewrote the `<p>` inside the sidebar "Meet the Travelers" widget on the 5
+pages that have it (`index.html`, `posts.html`, `gallery.html`,
+`subscribe.html`, `contact.html`) — was "Aman does most of the traveling
+and all of the writing, sometimes with a friend or two tagging along for
+the ride." Now frames the site as a small group of friends who travel
+together and separately, with Aman doing most of the traveling and
+everyone contributing writing for their own trips.
+
+Note: `about.html` has its OWN, differently-worded "Meet the Travelers"
+section in the main content area (not the sidebar widget) — left that one
+untouched since it wasn't part of this request. Flag if it should be
+brought in line with the new wording too.
+
+No shared template/partial for the sidebar — each page carries its own
+copy of the markup, so this had to be a 5-file find-and-replace.
