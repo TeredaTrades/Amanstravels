@@ -6,8 +6,19 @@ session can pick up mid-trip if needed.
 
 ## Batches received so far
 
-**Batch 3 expected** — Aman has said there's one more batch coming after this. Hold off on treating
-the Seoul trip as "complete" until it arrives.
+**All 3 batches received — trip complete.**
+
+**Batch 3** (2 photos + 3 videos):
+- Photo: N Seoul Tower with the cable car crossing overhead, seen from below near the lower station,
+  with a yellow ginkgo tree in the foreground (`photo16`) — a near-duplicate pair was sent
+  (`IMG-20260908-WA0013.jpg` and `IMG-20260908-WA0017.jpg`); used WA0013, better framed
+- Video `VID-20260908-WA0031.mp4` (8.4s) — summit love-lock fence, close-up
+- Video `VID-20260908-WA0032.mp4` (18.6s) — more love locks with the city view and observation deck
+  stairs behind
+- Video `VID-20260908-WA0028.mp4` (7.4s) — the summit observation deck, full Seoul skyline panorama
+  — **this file's raw pixel content is sideways with no rotation metadata** (WhatsApp likely stripped
+  it); fixed with `transpose=2` (90° counter-clockwise) before scaling — confirmed visually, don't
+  redo this rotation if this file is ever touched again
 
 **Batch 2** (3 photos + 5 videos):
 - Photo: Bukchon rooftops with N Seoul Tower visible on its hill in the distance (`photo13`)
@@ -72,31 +83,40 @@ Batch 2 videos, same treatment:
 | `clip18-myeongdong-storefront.mp4` | `VID-20260908-WA0019.mp4` | 2. Myeongdong | full 5.4s, no trim |
 | `clip19-namsan-cablecar-ascent.mp4` | `VID-20260908-WA0020.mp4` | 3. Namsan Tower | full 7.3s, no trim |
 
-**Photo — done.** Ticket photo EXIF-stripped and exported as `photo12-namsan-cable-car-ticket-native`
-in JPG + WebP, committed to `assets/`. Batch 2's three photos (`photo13`, `photo14`, `photo15`)
-exported at 480/800 widths in JPG + WebP (native resolution was modest — 821–1280px on the long
-edge — so no 1600w version, same call as the ticket photo). All four photos wired into their own
-entry-cards at the top of the `index.html` gallery (ahead of the Dubai entry). Hero status badge,
-journey section, and sidebar bio/meta descriptions updated to reflect Seoul as the most recent stop.
+Batch 3 videos, same treatment (all Namsan/summit, appended to the end of the Namsan section, right
+after the cable-car-ascent clip and before the "coming soon to YouTube" placeholder):
 
-**Site integration — done.** Extended the existing "The Journey" section (built for Dubai) rather
-than creating a new one: added a second `journey-intro` line ("🇰🇷 Seoul, South Korea — ...") and a
-second `.journey-strip` directly below the Dubai strip. Batch 2's 5 clips were woven into this same
-strip at their narrative point rather than appended at the end — e.g. the cable-car-ascent clip sits
-right after the Namsan-base clip, and the second hanok clip sits among the other Bukchon clips — so
-the strip reads as one continuous story (11 clips total after batch 2) rather than "batch 1, then
-batch 2". Same lazy-load approach as Dubai (`IntersectionObserver`, `data-src`, muted/loop/playsinline)
-— no changes needed to the JS since it already selects all `.journey-card video[data-src]` regardless
-of which strip they're in.
+| Output file | Source | Story beat | Treatment |
+|---|---|---|---|
+| `clip20-namsan-locks.mp4` | `VID-20260908-WA0031.mp4` | 3. Namsan Tower | trimmed to 8s of 8.4s |
+| `clip21-namsan-deck.mp4` | `VID-20260908-WA0032.mp4` | 3. Namsan Tower | trimmed to 8s of 18.6s |
+| `clip22-namsan-panorama.mp4` | `VID-20260908-WA0028.mp4` | 3. Namsan Tower | full 7.4s, rotated 90° CCW first (see note above), no trim |
+
+**Photo — done.** Ticket photo EXIF-stripped and exported as `photo12-namsan-cable-car-ticket-native`
+in JPG + WebP, committed to `assets/`. Batches 2–3's four photos (`photo13`–`photo16`) exported at
+480/800 widths in JPG + WebP (native resolution was modest — 821–1280px on the long edge — so no
+1600w version, same call as the ticket photo). All five photos wired into their own entry-cards at
+the top of the `index.html` gallery (ahead of the Dubai entry). Hero status badge, journey section,
+and sidebar bio/meta descriptions updated to reflect Seoul as the most recent stop.
+
+**Site integration — done, trip complete.** Extended the existing "The Journey" section (built for
+Dubai) rather than creating a new one: added a second `journey-intro` line
+("🇰🇷 Seoul, South Korea — ...") and a second `.journey-strip` directly below the Dubai strip. Clips
+from batches 2 and 3 were woven into this same strip at their narrative point rather than appended at
+the end — e.g. the cable-car-ascent clip sits right after the Namsan-base clip, and batch 3's three
+summit clips (love locks ×2, panorama) close out the strip right before the "coming soon to YouTube"
+placeholder — so the whole thing reads as one continuous story (16 clips total) rather than
+"batch 1, then batch 2, then batch 3". Same lazy-load approach as Dubai (`IntersectionObserver`,
+`data-src`, muted/loop/playsinline) — no changes needed to the JS since it already selects all
+`.journey-card video[data-src]` regardless of which strip they're in.
 
 ## Not yet done / open items
 
-- **Batch 3 still expected from Aman** — don't treat this trip as finished. New clips should slot
-  into the existing single `.journey-strip` at their narrative point (Bukchon / Myeongdong / Namsan),
-  same as batch 2 did, rather than appended at the end by default — check content first.
-- YouTube full-length compilation — not started for this trip either.
+- Trip is complete as of batch 3 — no more Korea batches expected unless Aman says otherwise.
+- YouTube full-length compilation — not started for this trip.
 - The gallery entry-card grid is still a single long scrolling column — the user has flagged that
   this should be revisited/restructured as more trips are added (see `PROJECT_NOTES.md` /
-  `amans-travels-site` memory notes). Not addressed in this session. Now more pressing: this trip
-  alone has added 4 entry-cards, all currently un-collapsed at the top of the grid.
+  `amans-travels-site` memory notes). Not addressed in this session. This trip alone added 5
+  entry-cards, all currently un-collapsed at the top of the grid — this is probably the best trip to
+  use as the test case when that restructuring work happens, since it's the largest single trip so far.
 - Custom-domain item from `PROJECT_NOTES.md` still open, unrelated to this trip.
