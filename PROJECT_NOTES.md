@@ -393,3 +393,16 @@ name Mike/Rodi. Historical progress logs (`TRIP_DUBAI_PROGRESS.md`,
 `TRIP_KOREA_PROGRESS.md`, `SITE_RESTRUCTURE_NOTES.md`) were left as-is
 since they're a record of what happened in past sessions, not live
 site copy.
+
+## Follow-up: kept the "few friends" framing, still unnamed (this session)
+
+Adjusted the previous solo-Aman revert per feedback: the site should still
+say Aman travels with a few friends sometimes — that part was accurate and
+should stay — but those friends should never be named individually (no
+Mike/Rodi anywhere, on the record from the earlier session's request).
+Updated the welcome blurb, the "Meet the Travelers" widget/section
+(reverted the heading from "Meet Aman" back to "Meet the Travelers", but
+now with a single unattributed paragraph instead of the old three-person
+list), and the footer disclaimer to say "sometimes joined by a few friends
+along the way" without naming anyone. JSON-LD `author` stays as just Aman
+(schema.org expects named persons, and the friends aren't named).
