@@ -406,3 +406,33 @@ now with a single unattributed paragraph instead of the old three-person
 list), and the footer disclaimer to say "sometimes joined by a few friends
 along the way" without naming anyone. JSON-LD `author` stays as just Aman
 (schema.org expects named persons, and the friends aren't named).
+
+## Disclaimer wording, copy de-duplication, and new "Aman Approved" widget (this session)
+
+- Dropped "personal" from the footer disclaimer ("This is Aman's travel
+  blog..." instead of "...Aman's personal travel blog...") per request.
+- Footer disclaimer also now leaves room for future monetization: added
+  "Some posts may include sponsored content or affiliate links — these
+  will always be clearly marked as such." before the existing
+  not-affiliated-with-any-business line, since sponsorships/affiliate
+  products are planned.
+- The home-page Welcome blurb and the sidebar "Meet the Travelers" widget
+  used to say almost the same thing (both explaining that Aman travels
+  with friends sometimes). Reworded them to cover different ground:
+  Welcome now describes what the site offers (photos/clips/cost & visa
+  notes), the widget covers who's behind it (Aman does the writing,
+  friends sometimes tag along — still unnamed).
+- Checked the full git history (all 31 commits) for any prior "Aman
+  Approved" card/widget — never existed in this repo, so it wasn't
+  something removed by accident. Built a new `.approved-widget` sidebar
+  component (CSS + markup, added after the Snapshot widget on every
+  sidebar page: index/about/gallery/posts/subscribe/contact) as a home
+  for future gear/service recommendations and affiliate picks. Currently
+  ships with a single "Coming soon" placeholder list item and a note
+  that it may carry affiliate links later, marked clearly when it does.
+  **To use it**: replace the placeholder `<li>` in each page's
+  `.approved-list` with real `<strong>Name</strong><span>why it's
+  recommended, optionally with a link</span>` entries once there's an
+  actual product/service to feature — same block is duplicated across
+  6 files (no shared include, same as nav/footer), so update all of
+  them together.
