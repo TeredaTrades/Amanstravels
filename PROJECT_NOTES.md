@@ -644,3 +644,57 @@ Aman-only phrasing. Updated everywhere it appeared:
   phrase.
 
 User picked the replacement from a shortlist of options I offered.
+
+## Session summary — 2026-09-10 (this session, all of the above)
+
+Picked this up mid-restructure with a fresh GitHub PAT from the user (their
+own token, used for this session's commits only — not stored anywhere).
+Three separate asks, done in order, each committed/pushed separately so
+they're easy to revert individually if needed:
+
+1. **Sidebar bio rewrite.** User wanted the "Meet the Travelers" sidebar
+   text changed from Aman-solo phrasing ("Aman does most of the traveling
+   and all of the writing...") to something that reflects the group-blog
+   reframing already underway (see "Reframing as a group blog" above) —
+   friends who travel and document together, with Aman still doing most of
+   the actual traveling. Offered a tightened version of the user's draft;
+   they approved. Applied to all 5 pages that had the widget at the time
+   (`index`, `posts`, `gallery`, `subscribe`, `contact`).
+
+2. **Shared template + landing-page-only.** Follow-up ask: (a) stop
+   duplicating the widget's HTML across pages — make it a single source of
+   truth, and (b) only show it on the homepage, not the 4 inner pages.
+   Since this is a static site with no build step, "shared template" means
+   a JS-injected partial (same pattern as the Snapshot widget rotation):
+   the markup now lives once in `js/site.js` and injects into
+   `<div id="meet-travelers-widget">`, which now only exists in
+   `index.html`. Removed the widget's markup entirely from the other 4
+   pages. Also updated `about.html`'s separate, full-prose "Meet the
+   Travelers" section to match the new wording, since the user asked for
+   that page to be brought in line too. Verified all of this with a
+   scripted jsdom render (widget appears on the homepage, is a correct
+   no-op everywhere else) before pushing. Bumped the site-wide `?v=`
+   cache-busting tag afterward, since this changed shipped JS behavior.
+
+3. **Tagline swap.** User wanted the "Travel with Aman. Travel in Peace."
+   catchphrase gone, since it's Aman-solo phrasing and the site no longer
+   is. Brainstormed options with the user (two rounds) rather than picking
+   unilaterally, since a site-wide tagline is a branding call. They landed
+   on "The Road Is Better Shared." — replaced in the footer on all 11
+   pages (incl. the 2 standalone `posts/` pages) and the homepage hero,
+   plus `index.html`'s `<title>`/`og:title`/`twitter:title`/JSON-LD `name`,
+   which had baked the old phrase in as the homepage's SEO title suffix.
+   Pure text change, no `?v=` bump needed (matches the convention already
+   used for content-only edits vs. CSS/JS changes).
+
+**Still open / worth knowing for next time:**
+- Everything from the prior "Open items" list above (Formspree form ID,
+  `_next` redirect, standalone posts not using the shared CSS vars) is
+  still open — untouched this session.
+- If the widget ever needs to come back on an inner page, it's now a
+  one-line add (`<div id="meet-travelers-widget"></div>` in that page's
+  sidebar) rather than a markup copy-paste.
+- `about.html`'s "Meet the Travelers" prose and the sidebar widget's copy
+  are intentionally kept in sync by hand (no shared source between them,
+  since they live in different places for different reasons) — if the
+  bio changes again, both spots need editing.
