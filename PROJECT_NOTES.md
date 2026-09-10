@@ -628,3 +628,19 @@ Follow-up to the bio rewrite above, per user request:
 Verified with a quick jsdom render: widget injects correctly on
 `index.html`, and the placeholder/widget markup is absent (correct no-op)
 on the other 4 pages and on `about.html`.
+
+## Retired the "Travel with Aman. Travel in Peace." catchphrase (2026-09-10)
+
+Per user request: swapped the site-wide tagline for "The Road Is Better
+Shared." — fits the group-of-friends framing better than the old
+Aman-only phrasing. Updated everywhere it appeared:
+
+- The `.tagline` line in every page's footer (11 pages, incl. the two
+  standalone `posts/` pages) and the homepage hero subtitle.
+- `index.html`'s `<title>`, `og:title`, `twitter:title`, and JSON-LD
+  `name` also used "Aman's Travels — Travel in Peace" as the homepage's
+  SEO title suffix — updated those to "Aman's Travels — The Road Is
+  Better Shared" to match. No other page's title tags referenced the old
+  phrase.
+
+User picked the replacement from a shortlist of options I offered.
