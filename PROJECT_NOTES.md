@@ -253,15 +253,16 @@ via search before being added, not assumed. Aman's actual visa
 type/process, packing list, and flight/immigration/transfer experience
 are marked placeholder, same honest approach as the cost post.
 
-**6. Newsletter / "New Stop Alerts" capture — scaffolded, needs an account.**
-A new sidebar widget (`#newsletter`, "Subscribe" in nav) with an email
-input submitting to a Formspree endpoint. **Open item, same shape as
-every other account-gated item above:** the form action points at
-`https://formspree.io/f/YOUR_FORM_ID` — a placeholder. Someone needs to
-sign up at formspree.io (needs an email, can't be done on Aman's
-behalf), create a form, and swap `YOUR_FORM_ID` for the real form ID
-before this actually captures emails. Until then the form is visually
-complete but non-functional — don't advertise it as live.
+**6. Newsletter / "New Stop Alerts" capture — done, live.** A sidebar
+widget (`#newsletter`, "Subscribe" in nav) plus a full `subscribe.html`
+page, both submitting to a real Formspree endpoint
+(`https://formspree.io/f/xwlkynek`, wired 2026-09-09, see the "Formspree
+wiring" entry below). Both forms redirect back via `_next` on submit and
+`site.js` shows a `.form-success` message in place of the form when
+`?sent=1` is present — re-verified this whole flow end-to-end with a
+scripted test on 2026-09-11 (query param → success message shown, form
+hidden) and it's working correctly on both `subscribe.html` and
+`contact.html`.
 
 **Monetization plan (from the planning conversation, still mostly
 open):** affiliate links (Booking.com/Expedia, GetYourGuide/Viator,
@@ -277,11 +278,15 @@ started; picking mini-clips from `assets/videos/` and posting as
 Reels/Shorts was one of the five original content-expansion ideas but
 is on hold until a future session.
 
-**Net status of the 5 original content-expansion ideas:** analytics ✅
-done, SEO/AI ✅ done, map ✅ done, cost-breakdown post ⏸ scaffolded
-(needs next-trip data), visa/logistics post ⏸ scaffolded (needs Aman's
-input), newsletter ⏸ scaffolded (needs Formspree account), social
-pushes ⏸ not started (deferred).
+**Net status of the 5 original content-expansion ideas (updated
+2026-09-11):** analytics ✅ done, SEO/AI ✅ done, map ✅ done,
+cost-breakdown post ⏸ scaffolded (still needs next-trip data — see
+`TRIP_COST_QUESTIONS.md`, nothing to do until there's a next trip to
+log), visa/logistics post ⏸ scaffolded (still needs Aman's real
+answers — the page/structure is done, placeholders remain), newsletter
+✅ done and live (Formspree account + form ID were set up, redirect +
+confirmation flow re-verified working), social pushes ⏸ not started
+(deferred, per above).
 
 ## "Everywhere I've Been" map — done
 
@@ -759,3 +764,45 @@ Four commits, each independently revertable:
   7-link nav on every other page — left as-is since it predates this
   session and expanding it wasn't part of this ask, but worth asking the
   user about if a full-nav pass ever happens.
+
+## Session — 2026-09-11 (continued): status check-in on the content plan
+
+User asked for a status re-check on the open items from the monetization/
+content plan, plus two fixes. Findings:
+
+- **Formspree redirect — confirmed already working**, contrary to the
+  worry it might still be a placeholder. Real form ID (`xwlkynek`), `_next`
+  redirect, and the `?sent=1` confirmation-message flow are all live on
+  both `subscribe.html` and `contact.html` — re-verified with a scripted
+  test simulating the post-submit redirect. See corrected "Newsletter"
+  entry above (was previously logged as still needing an account; that
+  was stale).
+- **Post-page nav fixed** — see the separate commit; the 3-link nav was a
+  restructure-era leftover, now matches the site's 7-link nav everywhere.
+- **Content-plan status, item by item:**
+  - Cost-breakdown post: still genuinely stalled on real Dubai spend data
+    (confirmed those numbers were never tracked at the time and can't be
+    backfilled — see `TRIP_COST_QUESTIONS.md`). Nothing to build here
+    until there's a next trip to log numbers for.
+  - Visa/logistics post: exists and is structurally complete
+    (`posts/dubai-visa-logistics.html`); the open placeholders are Aman's
+    own answers (visa type actually used, packing list, route
+    experience) — a content-fill task, not a code task. Dubai/Seoul are
+    still the only two trips with any content on the site — no second
+    trip's worth of material is queued anywhere in the repo.
+  - Affiliate signups (Booking.com, GetYourGuide, Amazon Associates,
+    Airalo, SafetyWing): still un-created, still can't be done without
+    Aman's own account creation. Can draft post copy/placement around
+    them whenever there's a real link to drop in.
+  - Custom domain: re-tested `scripts/set-domain.sh` end-to-end on a
+    scratch copy of the repo (ran it against `example.com`) — it
+    correctly rewrites all 14 canonical/OG/sitemap/robots/llms.txt
+    references, strips the `/Amanstravels` path segment for the
+    custom-domain case, and writes `CNAME`. Confirmed ready; still
+    blocked on picking a domain + manual DNS/GitHub Pages settings.
+  - Traffic check-in: could not check real GoatCounter numbers this
+    session — no login credentials for the dashboard, and
+    `amanstravels.goatcounter.com` isn't set up with a public stats page
+    (would need to opt into that in GoatCounter's settings, or Aman
+    shares a screenshot/export). Worth doing before any display-ad
+    decision, as previously noted.
