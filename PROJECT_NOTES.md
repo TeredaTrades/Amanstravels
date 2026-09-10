@@ -353,3 +353,43 @@ in gold italic same as the cost post, waiting on his input.
 - Deploys happen automatically on push to `main` via `.github/workflows/pages.yml` — don't reintroduce the old manual "Settings → Pages → pick a branch" flow described in the original README; that's been superseded.
 - Image asset naming convention: `assets/photoN-<slug>-<width>.<jpg|webp>`, originals at `assets/originals/photoN-<slug>.jpg`. Keep this pattern if adding more gallery photos so `index.html`'s `srcset` stays predictable.
 - The site no longer presents itself as a "mock" — copy and framing should stay real/first-person going forward.
+
+## Home page redesign + reverting to solo-Aman framing (this session)
+
+The multi-page split (see SITE_RESTRUCTURE_NOTES.md) had left `index.html`
+feeling thin — the "Journey / Photos / Posts" section was just three text
+link-cards with an emoji, no actual content. Replaced it with real
+previews pulled from existing assets:
+
+- **The Journey preview**: a `.journey-strip` (same lazy-load markup/CSS as
+  `journey.html`) with 6 hand-picked clips spanning both trips (Addis
+  takeoff, Dubai landing, Marina at night, Bukchon alley, Namsan approach,
+  Namsan love locks), linking to the full `journey.html`.
+- **Photos preview**: a new `.mini-photo-grid` (3-col responsive grid,
+  new CSS) showing one real photo per remaining country (Dubai, Seoul,
+  Addis, Macao, Madrid, Liège — Bogotá already covered by the sidebar
+  Snapshot widget), each linking to that place's anchor on `gallery.html`.
+- **Map preview**: the same Leaflet map/pins from `map.html`, embedded
+  directly on the home page in a shorter "compact" variant
+  (`.map-section.compact`, 260px instead of 420px) with a link to the
+  full interactive map. Needed adding Leaflet's CSS/JS includes to
+  `index.html`'s `<head>`/body (previously only on `map.html`);
+  `js/site.js`'s map-init IIFE is generic (guards on `#travel-map`
+  existing) so it works unmodified on both pages.
+- Posts wasn't given a full preview section (no video/photo asset to
+  show) — kept as a single slim text line ("Also on the site: ...")
+  linking to `posts.html` instead of a card.
+
+**Reverted the "group of friends" framing back to solo Aman**, per
+explicit request — this undoes the "Reframing as a group blog" part of
+the previous restructure session (Mike/Rodi are no longer named
+anywhere): "Meet the Travelers" sidebar/about-page widgets are back to
+a single "Meet Aman" bio, the Seoul/Dubai journey-intro bylines and
+gallery entry-card bylines attributing those trips to Rodi/Mike now
+read as Aman's, JSON-LD `author` on every page is a single Person
+(Aman) instead of an array of three, and the footer disclaimer /
+welcome copy / meta descriptions no longer say "group of friends" or
+name Mike/Rodi. Historical progress logs (`TRIP_DUBAI_PROGRESS.md`,
+`TRIP_KOREA_PROGRESS.md`, `SITE_RESTRUCTURE_NOTES.md`) were left as-is
+since they're a record of what happened in past sessions, not live
+site copy.

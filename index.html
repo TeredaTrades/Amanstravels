@@ -4,19 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Aman's Travels — Travel in Peace</title>
-  <meta name="description" content="Travel stories, photos, and short trip videos from a group of friends — Aman, Mike, Rodi, and others — from Colombia, Belgium, Macao, Spain, Ethiopia, the UAE, and South Korea, plus practical trip-cost breakdowns and tips." />
+  <meta name="description" content="Travel stories, photos, and short trip videos from Aman — from Colombia, Belgium, Macao, Spain, Ethiopia, the UAE, and South Korea, plus practical trip-cost breakdowns and tips." />
   <link rel="canonical" href="https://teredatrades.github.io/Amanstravels/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Aman's Travels" />
   <meta property="og:title" content="Aman's Travels — Travel in Peace" />
-  <meta property="og:description" content="Travel stories, photos, and short trip videos from a group of friends — Aman, Mike, Rodi, and others — from Colombia, Belgium, Macao, Spain, Ethiopia, the UAE, and South Korea, plus practical trip-cost breakdowns and tips." />
+  <meta property="og:description" content="Travel stories, photos, and short trip videos from Aman — from Colombia, Belgium, Macao, Spain, Ethiopia, the UAE, and South Korea, plus practical trip-cost breakdowns and tips." />
   <meta property="og:url" content="https://teredatrades.github.io/Amanstravels/" />
   <meta property="og:image" content="https://teredatrades.github.io/Amanstravels/assets/photo11-marina-boat-1600.jpg" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Aman's Travels — Travel in Peace" />
-  <meta name="twitter:description" content="Travel stories, photos, and short trip videos from a group of friends — Aman, Mike, Rodi, and others — from Colombia, Belgium, Macao, Spain, Ethiopia, the UAE, and South Korea, plus practical trip-cost breakdowns and tips." />
+  <meta name="twitter:description" content="Travel stories, photos, and short trip videos from Aman — from Colombia, Belgium, Macao, Spain, Ethiopia, the UAE, and South Korea, plus practical trip-cost breakdowns and tips." />
   <meta name="twitter:image" content="https://teredatrades.github.io/Amanstravels/assets/photo11-marina-boat-1600.jpg" />
 
   <script type="application/ld+json">
@@ -25,12 +25,8 @@
     "@type": "WebPage",
     "name": "Aman's Travels — Travel in Peace",
     "isPartOf": { "@type": "WebSite", "name": "Aman's Travels", "url": "https://teredatrades.github.io/Amanstravels/" },
-    "description": "Travel stories, photos, and short trip videos from a group of friends — Aman, Mike, Rodi, and others — from Colombia, Belgium, Macao, Spain, Ethiopia, the UAE, and South Korea, plus practical trip-cost breakdowns and tips.",
-    "author": [
-      { "@type": "Person", "name": "Aman" },
-      { "@type": "Person", "name": "Mike" },
-      { "@type": "Person", "name": "Rodi" }
-    ]
+    "description": "Travel stories, photos, and short trip videos from Aman — from Colombia, Belgium, Macao, Spain, Ethiopia, the UAE, and South Korea, plus practical trip-cost breakdowns and tips.",
+    "author": { "@type": "Person", "name": "Aman" }
   }
   </script>
 
@@ -39,6 +35,7 @@
        Site: https://amanstravels.goatcounter.com -->
   <script data-goatcounter="https://amanstravels.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 </head>
 <body>
   <nav>
@@ -63,48 +60,115 @@
     <main>
       <section id="about" class="about-card">
         <h2>Welcome</h2>
-        <p>Hi — this is Aman's Travels, run by a group of friends who travel often for work and for play. Aman does most of the traveling and most of the writing, but Mike, Rodi, and a few others chip in their own stops too. This site is where we share the highlights: quick stories, photos, and practical tips from the places we've been.</p>
+        <p>Hi — this is Aman's Travels. Aman travels often for work and for play, and this site is where the highlights land: quick stories, real photos, short clips, and practical tips from the places he's been.</p>
       </section>
 
-      <div class="section-links">
-        <a href="journey.html">
-          <span class="link-emoji">🎬</span>
-          <h3>The Journey</h3>
-          <p>Short video clips from each trip, in order.</p>
-        </a>
-        <a href="gallery.html">
-          <span class="link-emoji">📸</span>
-          <h3>Photos</h3>
-          <p>Every stop's field logs and photos.</p>
-        </a>
-        <a href="posts.html">
-          <span class="link-emoji">📝</span>
-          <h3>Posts</h3>
-          <p>Trip costs, visas, and logistics notes.</p>
-        </a>
+      <div class="home-preview">
+        <div class="preview-header">
+          <h2>🎬 The Journey</h2>
+          <a class="see-all" href="journey.html">See all the clips &rarr;</a>
+        </div>
+        <p class="preview-note">A few clips from the road — Addis to Dubai, Bukchon to Namsan.</p>
+        <div class="journey-strip">
+          <div class="journey-card">
+            <div class="video-frame">
+              <video poster="assets/videos/posters/clip6-addis-takeoff.jpg" data-src="assets/videos/clip6-addis-takeoff.mp4" muted loop playsinline preload="none"></video>
+            </div>
+            <div class="journey-caption">Wheels up from Bole International, Addis Ababa.</div>
+          </div>
+          <div class="journey-card">
+            <div class="video-frame">
+              <video poster="assets/videos/posters/clip8-dubai-landing.jpg" data-src="assets/videos/clip8-dubai-landing.mp4" muted loop playsinline preload="none"></video>
+            </div>
+            <div class="journey-caption">Flaps down over Dubai's highways on final approach.</div>
+          </div>
+          <div class="journey-card">
+            <div class="video-frame">
+              <video poster="assets/videos/posters/clip3-beach-skyline-night.jpg" data-src="assets/videos/clip3-beach-skyline-night.mp4" muted loop playsinline preload="none"></video>
+            </div>
+            <div class="journey-caption">The Marina skyline lit up from the beach at night.</div>
+          </div>
+          <div class="journey-card">
+            <div class="video-frame">
+              <video poster="assets/videos/posters/clip9-bukchon-alley.jpg" data-src="assets/videos/clip9-bukchon-alley.mp4" muted loop playsinline preload="none"></video>
+            </div>
+            <div class="journey-caption">Wandering the quiet tiled-roof alleys of Bukchon.</div>
+          </div>
+          <div class="journey-card">
+            <div class="video-frame">
+              <video poster="assets/videos/posters/clip13-namsan-approach.jpg" data-src="assets/videos/clip13-namsan-approach.mp4" muted loop playsinline preload="none"></video>
+            </div>
+            <div class="journey-caption">Climbing through the trees toward N Seoul Tower.</div>
+          </div>
+          <div class="journey-card">
+            <div class="video-frame">
+              <video poster="assets/videos/posters/clip20-namsan-locks.jpg" data-src="assets/videos/clip20-namsan-locks.mp4" muted loop playsinline preload="none"></video>
+            </div>
+            <div class="journey-caption">Thousands of padlocks at the summit's love-lock fences.</div>
+          </div>
+        </div>
       </div>
+
+      <div class="home-preview">
+        <div class="preview-header">
+          <h2>📸 Photos</h2>
+          <a class="see-all" href="gallery.html">See the full gallery &rarr;</a>
+        </div>
+        <p class="preview-note">A stop or two from each place so far.</p>
+        <div class="mini-photo-grid">
+          <a href="gallery.html#entry-dubai">
+            <picture>
+              <source srcset="assets/photo11-marina-boat-480.webp" type="image/webp">
+              <img src="assets/photo11-marina-boat-480.jpg" alt="A boat and jet skis moving through Dubai Marina's waterway at dusk, with illuminated towers reflected in the water" loading="lazy">
+            </picture>
+            <span class="photo-caption">Dubai Marina, UAE</span>
+          </a>
+          <a href="gallery.html#entry-korea">
+            <picture>
+              <source srcset="assets/photo16-namsan-tower-cablecar-480.webp" type="image/webp">
+              <img src="assets/photo16-namsan-tower-cablecar-480.jpg" alt="N Seoul Tower rising above a green hillside with a cable car crossing overhead and a yellow ginkgo tree in the foreground" loading="lazy">
+            </picture>
+            <span class="photo-caption">Namsan Park, Seoul</span>
+          </a>
+          <a href="gallery.html#entry-addis">
+            <picture>
+              <source srcset="assets/photo8-addis-aerial-480.webp" type="image/webp">
+              <img src="assets/photo8-addis-aerial-480.jpg" alt="Aerial view of a city and surrounding neighborhoods seen from above" loading="lazy">
+            </picture>
+            <span class="photo-caption">Addis Ababa, Ethiopia</span>
+          </a>
+          <a href="gallery.html#entry-macao">
+            <picture>
+              <source srcset="assets/photo5-parisian-480.webp" type="image/webp">
+              <img src="assets/photo5-parisian-480.jpg" alt="Night view of a grand, illuminated building façade along a boulevard" loading="lazy">
+            </picture>
+            <span class="photo-caption">Macao</span>
+          </a>
+          <a href="gallery.html#entry-madrid">
+            <picture>
+              <source srcset="assets/photo7-la-pecera-480.webp" type="image/webp">
+              <img src="assets/photo7-la-pecera-480.jpg" alt="Narrow sunlit street with tall, warm-colored buildings and a van driving uphill" loading="lazy">
+            </picture>
+            <span class="photo-caption">Madrid, Spain</span>
+          </a>
+          <a href="gallery.html#entry-liege">
+            <picture>
+              <source srcset="assets/photo4-le-carre-480.webp" type="image/webp">
+              <img src="assets/photo4-le-carre-480.jpg" alt="DJ performing at a club with purple and red lighting" loading="lazy">
+            </picture>
+            <span class="photo-caption">Liège, Belgium</span>
+          </a>
+        </div>
+      </div>
+
+      <p class="more-reading">📝 Also on the site: <a href="posts.html">trip-cost breakdowns and visa notes</a> from the road.</p>
     </main>
     <aside class="sidebar">
 
       <div class="widget author-box">
         <div class="author-img">A</div>
-        <h3>Meet the Travelers</h3>
-        <p>A group of friends who travel often, for work and for fun, and share the stops along the way.</p>
-        <ul class="team-list">
-          <li>
-            <div class="team-avatar">A</div>
-            <div><strong>Aman</strong><span>Does most of the traveling — the one behind most of these posts and photos.</span></div>
-          </li>
-          <li>
-            <div class="team-avatar">M</div>
-            <div><strong>Mike</strong><span>Brought back the Dubai leg — marina nights and the flight logs.</span></div>
-          </li>
-          <li>
-            <div class="team-avatar">R</div>
-            <div><strong>Rodi</strong><span>Behind the Seoul trip — Bukchon, Myeongdong, and Namsan Tower.</span></div>
-          </li>
-        </ul>
-        <p class="team-note">...plus a few other friends who join the trips now and then.</p>
+        <h3>Meet Aman</h3>
+        <p>Travels often for work and for fun, and shares the stops along the way — the one behind every post and photo here.</p>
       </div>
 
       <div class="widget snapshot-widget">
@@ -119,12 +183,20 @@
           </aside>
   </div>
 
+  <section class="map-section compact" id="map">
+    <h2 class="section-title">Everywhere Aman's Been</h2>
+    <p class="map-intro">Seven countries so far — click a pin to jump to the photos from that stop.</p>
+    <div id="travel-map"></div>
+    <a class="map-cta" href="map.html">Open the full interactive map &rarr;</a>
+  </section>
+
   <footer>
     <p>&copy; 2026 Aman's Travels. All rights reserved.</p>
     <p class="tagline">Travel with Aman. Travel in Peace.</p>
-    <p class="disclaimer">This is a personal travel blog run by a group of friends — Aman, Mike, Rodi, and others. It is not affiliated with, sponsored by, or endorsed by any airline, hotel, attraction, or business mentioned here. Prices, visa requirements, and other details reflect what we found at the time of travel and may have changed since — please confirm current requirements before you go.</p>
+    <p class="disclaimer">This is Aman's personal travel blog. It is not affiliated with, sponsored by, or endorsed by any airline, hotel, attraction, or business mentioned here. Prices, visa requirements, and other details reflect what Aman found at the time of travel and may have changed since — please confirm current requirements before you go.</p>
     <p class="footer-links"><a href="about.html">About</a>&middot;<a href="contact.html">Contact</a>&middot;<a href="subscribe.html">Subscribe</a></p>
   </footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="js/site.js"></script>
 </body>
 </html>
