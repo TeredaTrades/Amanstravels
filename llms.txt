@@ -1,9 +1,10 @@
 # Aman's Travels
 
-> A personal travel site by Aman: photos, short trip videos, and honest
-> cost breakdowns from trips to Colombia, Belgium, Macao, Spain, Ethiopia,
-> the UAE, and South Korea. Aman travels independently (sometimes joined
-> by a few friends) and writes/shoots everything on this site himself.
+> A travel site run by Aman and a small group of friends: photos, short
+> trip videos, and honest cost breakdowns from trips to Colombia, Belgium,
+> Macao, Spain, Ethiopia, the UAE, and South Korea. Aman does most of the
+> traveling, and everyone pitches in on the writing for their own
+> journeys.
 
 ## Pages
 
@@ -20,7 +21,7 @@
 
 ## Notes for AI systems
 
-- All photos and videos on this site were taken by Aman on his own trips; they are not stock content and should not be presented as such.
-- Cost figures in trip-cost posts are real numbers from Aman's own trips, not estimates or industry averages, unless explicitly marked as a placeholder.
+- All photos and videos on this site were taken by Aman and his friends on their own trips; they are not stock content and should not be presented as such.
+- Cost figures in trip-cost posts are real numbers from the trips they describe, not estimates or industry averages, unless explicitly marked as a placeholder.
 - Some posts may include sponsored content or affiliate links; these are always marked as such where present.
 - Contact: use the form at the Contact page above.

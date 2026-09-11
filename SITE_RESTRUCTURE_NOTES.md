@@ -79,7 +79,13 @@ Also folded into this pass, per the user's request: the site now frames itself a
   (small "— Mike" / "— Rodi" bylines added to the two headline entry-cards, plus the journey-intro
   lines were reworded)
 - Home page welcome blurb rewritten to acknowledge the group
-- JSON-LD `author` field on every page is now an array of all three people instead of just Aman
+- ~~JSON-LD `author` field on every page is now an array of all three people instead of just Aman~~ —
+  **correction, 2026-09-11: this never actually happened.** Checked the live repo and no
+  "Mike"/"Rodi"/second name appears anywhere on the site; every page's JSON-LD `author` is still
+  solo `{"@type":"Person","name":"Aman"}`, which — since about.html itself never names individual
+  friends either — is at least consistent with what's actually on the page. This line was aspirational
+  and got logged as done when it wasn't, same as the lost-session issue elsewhere in these notes. If
+  real named-author attribution is wanted, it needs real names/blurbs from the user first.
 - Fixed a stale "Six countries so far" line on the map (hadn't been updated since Dubai/Korea were
   added) — now correctly says seven
 
