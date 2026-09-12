@@ -850,3 +850,46 @@ there's traffic to realistically hit 3 sales in 180 days. Booking.com
 needs a network chosen before it's a one-step signup. None of this can
 be done by Claude directly — all five need the account holder's own
 name/payment/tax details.
+
+## Session — 2026-09-11 (continued): Pinterest pipeline + starter pin batch
+
+User picked Pinterest/social as the priority thread from the visibility
+discussion. Built the full pipeline from scratch (nothing like it existed
+before, unlike MoneyMattersDaily's project which already had one):
+
+- **`scripts/generate_pin.py`** — Python/Pillow pin generator, 1000x1500
+  (Pinterest's standard 2:3), matching the site's own palette
+  (`--primary`/`--accent` from `css/style.css`) and typography (serif
+  headline, sans kicker label — DejaVu Serif/Sans standing in for the
+  site's Georgia/system-sans, since those aren't available as font files
+  in this environment). Takes a real site photo, applies a bottom-biased
+  gradient plus solid scrim blocks behind the brand row and title block
+  so text stays legible regardless of the photo's own tone/brightness,
+  then overlays the brand wordmark, a kicker label, and a wrapped title.
+  No URL is baked into the image — the site has no stable custom domain
+  yet, so printing one now would mean regenerating every pin later. The
+  destination link is set separately per pin when it's actually created
+  on Pinterest.
+- **5 starter pins** generated into `social/pins/`, using real site
+  photos: both blog posts (`dubai-trip-cost-breakdown`,
+  `dubai-visa-logistics`), one highlight pin each for the two documented
+  destinations (Dubai marina, Seoul/Myeongdong), and one general
+  overview pin ("Seven Countries, One Ongoing Trip") pointing at
+  `journey.html`.
+- **`social/PINTEREST_PLAN.md`** — the board structure (4 boards: a
+  general "Journey" board, one board per destination so far, and a
+  cross-destination "Travel Costs & Trip Planning" board for the
+  practical posts) plus the actual pin title/description copy and
+  destination URL for each of the 5 pins, ready to paste in once the
+  account exists.
+
+**What's still manual:** creating the actual Pinterest account and the 4
+boards, uploading the 5 images with the given copy, and claiming the
+site's domain in Pinterest settings — all need Aman's own login, same
+constraint as every other account-gated item logged in this file.
+
+**Ongoing pattern going forward:** new destinations or posts each get
+1–2 pins added via `scripts/generate_pin.py` as part of publishing them,
+not as a separate big batch — same "small step per session" lesson
+already learned from the Amanstravels lost-session issue and confirmed
+working well in the MoneyMattersDaily daily-post pipeline.
