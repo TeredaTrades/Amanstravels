@@ -893,3 +893,52 @@ constraint as every other account-gated item logged in this file.
 not as a separate big batch — same "small step per session" lesson
 already learned from the Amanstravels lost-session issue and confirmed
 working well in the MoneyMattersDaily daily-post pipeline.
+
+## Session — 2026-09-13: Formspree pre-launch checklist reviewed, spam filtering added
+
+User got Formspree's standard "Your Form's Pre-Launch Checklist" email
+(3 items: set your email domain, configure spam filtering, double-check
+your data workflow) and asked for a check against the repo's actual
+state.
+
+**1. Set your email domain — not done, currently blocked.** The site
+itself has no custom domain yet (`scripts/set-domain.sh` has never been
+run, no `CNAME` file in the repo — still serving from
+`teredatrades.github.io/Amanstravels`). Formspree's email-domain feature
+needs DNS access to a domain you own, so this is blocked on an actual
+domain purchase, not something to configure today.
+
+**2. Configure spam filtering — done this session.** Neither form
+(`contact.html`, `subscribe.html`) had any anti-spam measure before.
+Added a Formspree honeypot field (`_gotcha`) to both — a text input named
+exactly that, which Formspree silently drops any submission from if it's
+filled in. Real users never see or fill it: hidden via a new `.hp-field`
+CSS class (off-screen positioning, not `display:none`, since some bots
+specifically skip fields hidden that way) plus `aria-hidden="true"` and
+`tabindex="-1"` so it's also skipped by screen readers and keyboard
+navigation — deliberately *not* reusing the existing `.sr-only` class,
+since that class is for content that should stay screen-reader-accessible,
+the opposite of what a honeypot needs. Bumped the shared `?v=` cache-bust
+tag on all 11 pages to this commit's short SHA (`56e8b0a6`) per the
+existing convention.
+
+No external CAPTCHA (reCAPTCHA/hCaptcha/Turnstile) added — honeypot is
+usually enough at this traffic level and adds zero friction for real
+visitors. Worth revisiting only if actual spam starts getting through.
+
+**3. Double-check your data workflow — reviewed, one thing to verify
+manually.** Confirmed `contact.html` and `subscribe.html` intentionally
+share one Formspree form ID (`xwlkynek`), told apart only by the hidden
+`_subject` field — this was a deliberate choice from when the form was
+first wired up (2026-09-09), not an oversight. The `_next` redirect is
+already confirmed working. What isn't verifiable from the repo: whether
+Formspree's notification email actually lands somewhere both submission
+types are easy to tell apart — worth a real test submission on each form
+to confirm.
+
+### Open items
+- Domain purchase still the blocker for the email-domain checklist item
+  — same open item as the Pinterest domain-claim one above, no new
+  urgency here.
+- Manual: submit both forms once for real and confirm the notification
+  emails are easy to tell apart / landing where expected.
