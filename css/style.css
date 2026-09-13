@@ -825,6 +825,23 @@ footer .footer-links a:hover { color: var(--accent); }
   border: 0;
 }
 
+/* Honeypot field for Formspree's spam filtering (see PROJECT_NOTES.md,
+   "Formspree spam filtering added"). Deliberately hidden from BOTH sighted
+   users and assistive tech (unlike .sr-only above, which stays
+   screen-reader-accessible on purpose) — a bot that fills this in gets its
+   submission silently dropped by Formspree, and a screen-reader user should
+   never be prompted to fill in a field named "leave this blank" in the
+   first place. Off-screen positioning (not display:none/visibility:hidden)
+   because some spam bots specifically skip fields hidden that way. */
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 /* Standalone post pages (posts/*.html) — previously each post duplicated
    this whole block (plus the shared :root vars, nav, and footer rules
    already defined above) in its own inline <style>. Consolidated here so
