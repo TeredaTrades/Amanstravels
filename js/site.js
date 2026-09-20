@@ -163,6 +163,7 @@
   if (!mapEl || typeof L === 'undefined') return;
 
   var stops = [
+    { name: 'Lyon, France',          lat: 45.7640, lng: 4.8357,  anchor: 'gallery.html#entry-lyon' },
     { name: 'Seoul, South Korea',    lat: 37.5512, lng: 126.9882, anchor: 'gallery.html#entry-korea' },
     { name: 'Dubai, UAE',            lat: 25.2048, lng: 55.2708, anchor: 'gallery.html#entry-dubai' },
     { name: 'Addis Ababa, Ethiopia', lat: 9.0300,  lng: 38.7400, anchor: 'gallery.html#entry-addis' },
