@@ -226,3 +226,54 @@
     })
     .catch(function () { renderMap(fallbackStops); });
 })();
+
+// Click-to-enlarge lightbox for gallery entry-card photos. Clicking any
+// photo in an .entry-card opens it full-size (swapping the -480/-800
+// filename shown on the card for its -1600 version, when one exists;
+// falls back to the on-page src otherwise — e.g. the one native-resolution
+// ticket image that has no resized variants). Safe to include on any page —
+// does nothing if there are no .entry-card images.
+(function () {
+  var photos = document.querySelectorAll('.entry-card img');
+  if (!photos.length) return;
+
+  var overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+  overlay.setAttribute('aria-hidden', 'true');
+  overlay.innerHTML = '<button class="lightbox-close" aria-label="Close full-size image">&times;</button><img alt="">';
+  document.body.appendChild(overlay);
+
+  var overlayImg = overlay.querySelector('img');
+  var closeBtn = overlay.querySelector('.lightbox-close');
+
+  function fullSizeSrc(src) {
+    return src.replace(/-(480|800)\.jpg(\?.*)?$/, '-1600.jpg$2');
+  }
+
+  function open(img) {
+    overlayImg.src = fullSizeSrc(img.getAttribute('src'));
+    overlayImg.alt = img.getAttribute('alt') || '';
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    overlayImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  photos.forEach(function (img) {
+    img.addEventListener('click', function () { open(img); });
+  });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) close();
+  });
+  closeBtn.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) close();
+  });
+})();

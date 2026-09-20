@@ -961,3 +961,45 @@ data over time but isn't the primary source anymore.
 `data-lat="..." data-lng="..."` to that trip's lead entry-card in `gallery.html` (the one that
 already gets an `id="entry-..."` for cross-page linking). No edit to `js/site.js` needed — the map
 on both `map.html` and the home page's compact map picks it up automatically.
+
+## Session log — Sept 20, 2026: Lyon trip, map fix, lightbox
+
+A record of everything done in this session and why, for continuity if a future session (or a
+different chat) picks this up.
+
+1. **Placeholder blog posts question.** Aman asked what the 3 placeholder posts (Udaipur, Western
+   Ghats, Delhi street food) were and asked to remove them. Checked the repo first — they'd already
+   been removed in an earlier session (see the "Recent posts section — dropped" note above). No
+   action needed, just confirmed and explained.
+
+2. **Added the Lyon, France trip.** Full detail in `TRIP_LYON_PROGRESS.md`. Short version: Aman sent
+   4 photos + 3 videos from an afternoon through Vieux Lyon and up to the Fourvière basilica. First
+   photo upload came through as 320×240 thumbnails (likely a HEIC-preview issue) — caught before
+   processing and Aman re-sent full-resolution versions. Processed the same way as Dubai/Korea
+   (photos: EXIF-strip + 1600/800/480 JPG+WebP; videos: crop to 9:16, mute, compress, poster
+   thumbnails) and wired into `journey.html`, `gallery.html`, and the home page preview sections.
+   Hero status badge updated to "Lyon, France."
+
+3. **Map pin bug found and fixed.** After the Lyon trip went live, Aman noticed the "Everywhere
+   We've Been" map didn't show a Lyon pin. Root cause: the map's pin data lived in a separate
+   hardcoded `stops` array in `js/site.js`, completely disconnected from the gallery — so adding
+   Lyon's gallery entries never touched it. Fixed by making the map fetch `gallery.html` at runtime
+   and read `data-lat`/`data-lng` attributes directly off each trip's lead entry-card (added those
+   attributes to all 8 existing lead cards). The old array now only exists as an offline fallback.
+   **Why this matters going forward:** adding a new trip's map pin is now just 2 attributes on the
+   entry-card you're already creating — no second file to remember. See the fuller writeup above
+   ("Map pins now auto-derive from the gallery...").
+
+4. **Stale "Seven countries" copy fixed.** `map.html` and `index.html` both had a hardcoded "Seven
+   countries so far" line that didn't get bumped when Lyon (France, the 8th country) was added.
+   Updated both to "Eight countries so far." Note: this text is still manual — it's prose, not data,
+   so there was no clean way to derive it automatically the way the map pins now are. Worth
+   double-checking this line any time a new country (not just a new trip to an existing one) is
+   added.
+
+5. **Added click-to-enlarge on gallery photos.** Aman asked whether this was an intentional omission
+   — it wasn't; the images just never had any click behavior wired up. Added a small dependency-free
+   lightbox (CSS + JS, no HTML changes needed): clicking any `.entry-card` image opens it full-size
+   in a dark overlay, swapping in the `-1600` version of the file when one exists. Closes via the ✕
+   button, clicking outside the image, or Escape. Since it targets `.entry-card img` generically,
+   it applies automatically to every trip's photos, past and future — no per-photo wiring needed.
