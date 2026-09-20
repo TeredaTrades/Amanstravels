@@ -942,3 +942,22 @@ to confirm.
   urgency here.
 - Manual: submit both forms once for real and confirm the notification
   emails are easy to tell apart / landing where expected.
+
+## Map pins now auto-derive from the gallery (no more separate stops list)
+
+Previously `js/site.js` had its own hardcoded `stops` array (name/lat/lng/anchor) for the
+"Everywhere We've Been" map, completely separate from `gallery.html`. It was easy to add a new
+trip's gallery entries and forget to also update that array — which is exactly what happened with
+the Lyon trip (map had no Lyon pin until caught and fixed after the fact).
+
+**Fixed:** the map now fetches `gallery.html` at runtime and reads pin data straight off the DOM —
+specifically `data-lat` / `data-lng` attributes on each lead `entry-card` (the one with `id="entry-
+..."`), plus its `.entry-location` text for the popup label. A small hardcoded `fallbackStops` list
+still lives in `site.js` purely as a backup for the case where `fetch('gallery.html')` fails (e.g.
+someone opens the site from disk via `file://` instead of a real server) — it should track the DOM
+data over time but isn't the primary source anymore.
+
+**What this means going forward:** when adding a new trip, the *only* map-related step is adding
+`data-lat="..." data-lng="..."` to that trip's lead entry-card in `gallery.html` (the one that
+already gets an `id="entry-..."` for cross-page linking). No edit to `js/site.js` needed — the map
+on both `map.html` and the home page's compact map picks it up automatically.

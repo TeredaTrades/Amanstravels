@@ -155,14 +155,49 @@
   videos.forEach(function (video) { observer.observe(video); });
 })();
 
-// "Everywhere We've Been" map: one pin per country visited so far,
-// each linking back to that location's entry-card in the gallery page.
+// "Everywhere We've Been" map: one pin per location visited so far, each
+// linking back to that location's entry-card in the gallery page.
+//
+// The pin data lives on the gallery entry-cards themselves (data-lat /
+// data-lng on the <article id="entry-..."> tag), NOT in this file — this
+// script fetches gallery.html and reads it from there. That means adding a
+// new trip's map pin is just adding those two attributes on its lead
+// entry-card in gallery.html; nothing here needs to change.
+//
 // Safe to include on any page — does nothing if #travel-map isn't present.
 (function () {
   var mapEl = document.getElementById('travel-map');
   if (!mapEl || typeof L === 'undefined') return;
 
-  var stops = [
+  function renderMap(stops) {
+    if (!stops.length) return;
+    var map = L.map('travel-map', { scrollWheelZoom: false }).setView([20, 20], 2);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    var bounds = [];
+    stops.forEach(function (stop) {
+      var marker = L.marker([stop.lat, stop.lng]).addTo(map);
+      marker.bindPopup('<strong>' + stop.name + '</strong><br><a href="' + stop.anchor + '">See photos &rarr;</a>');
+      bounds.push([stop.lat, stop.lng]);
+    });
+    map.fitBounds(bounds, { padding: [30, 30] });
+
+    // Safety net: some browsers report the container's size late (fonts/
+    // layout still settling), which can leave Leaflet's tiles blank until
+    // the next resize. Recalculating once after load fixes that.
+    setTimeout(function () { map.invalidateSize(); }, 300);
+  }
+
+  // Fixed fallback list, only used if gallery.html can't be fetched (e.g.
+  // opened directly from disk via file:// instead of served over http/https,
+  // where cross-file fetch is blocked by the browser). Kept in sync manually
+  // as a last resort — the live site should always use the DOM-derived list
+  // above instead.
+  var fallbackStops = [
     { name: 'Lyon, France',          lat: 45.7640, lng: 4.8357,  anchor: 'gallery.html#entry-lyon' },
     { name: 'Seoul, South Korea',    lat: 37.5512, lng: 126.9882, anchor: 'gallery.html#entry-korea' },
     { name: 'Dubai, UAE',            lat: 25.2048, lng: 55.2708, anchor: 'gallery.html#entry-dubai' },
@@ -173,23 +208,21 @@
     { name: 'Bogotá, Colombia',      lat: 4.7110,  lng: -74.0721, anchor: 'gallery.html#entry-bogota' }
   ];
 
-  var map = L.map('travel-map', { scrollWheelZoom: false }).setView([20, 20], 2);
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  var bounds = [];
-  stops.forEach(function (stop) {
-    var marker = L.marker([stop.lat, stop.lng]).addTo(map);
-    marker.bindPopup('<strong>' + stop.name + '</strong><br><a href="' + stop.anchor + '">See photos &rarr;</a>');
-    bounds.push([stop.lat, stop.lng]);
-  });
-  map.fitBounds(bounds, { padding: [30, 30] });
-
-  // Safety net: some browsers report the container's size late (fonts/
-  // layout still settling), which can leave Leaflet's tiles blank until
-  // the next resize. Recalculating once after load fixes that.
-  setTimeout(function () { map.invalidateSize(); }, 300);
+  fetch('gallery.html')
+    .then(function (res) { return res.text(); })
+    .then(function (html) {
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var cards = doc.querySelectorAll('.entry-card[id][data-lat][data-lng]');
+      var stops = Array.prototype.map.call(cards, function (card) {
+        var locEl = card.querySelector('.entry-location');
+        return {
+          name: locEl ? locEl.textContent.trim() : card.id,
+          lat: parseFloat(card.getAttribute('data-lat')),
+          lng: parseFloat(card.getAttribute('data-lng')),
+          anchor: 'gallery.html#' + card.id
+        };
+      });
+      renderMap(stops.length ? stops : fallbackStops);
+    })
+    .catch(function () { renderMap(fallbackStops); });
 })();
