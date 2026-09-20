@@ -990,12 +990,14 @@ different chat) picks this up.
    entry-card you're already creating — no second file to remember. See the fuller writeup above
    ("Map pins now auto-derive from the gallery...").
 
-4. **Stale "Seven countries" copy fixed.** `map.html` and `index.html` both had a hardcoded "Seven
-   countries so far" line that didn't get bumped when Lyon (France, the 8th country) was added.
-   Updated both to "Eight countries so far." Note: this text is still manual — it's prose, not data,
-   so there was no clean way to derive it automatically the way the map pins now are. Worth
-   double-checking this line any time a new country (not just a new trip to an existing one) is
-   added.
+4. **Stale "Seven countries" copy fixed, then made automatic.** `map.html` and `index.html` both
+   had a hardcoded "Seven countries so far" line that didn't get bumped when Lyon (France, the 8th
+   country) was added. First fixed by hand ("Eight countries so far"), then made self-updating the
+   same way the map pins were: the number word is now in a `<span class="country-count">` on both
+   pages, and the same map script (which already fetches `gallery.html` and counts the lead
+   entry-cards for pins) sets that span's text and the map's aria-label from that same count. So
+   this text now updates itself whenever a new lead entry-card is added — no more manual copy edits
+   needed here either.
 
 5. **Added click-to-enlarge on gallery photos.** Aman asked whether this was an intentional omission
    — it wasn't; the images just never had any click behavior wired up. Added a small dependency-free

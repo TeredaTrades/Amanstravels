@@ -164,13 +164,33 @@
 // new trip's map pin is just adding those two attributes on its lead
 // entry-card in gallery.html; nothing here needs to change.
 //
+// The "Eight countries so far" copy (wrapped in <span class="country-count">
+// on map.html and index.html) is driven off the same count, via
+// updateCountryCount() below — so that text updates itself too whenever a
+// new lead entry-card is added, no manual copy edit needed.
+//
 // Safe to include on any page — does nothing if #travel-map isn't present.
 (function () {
   var mapEl = document.getElementById('travel-map');
   if (!mapEl || typeof L === 'undefined') return;
 
+  var numberWords = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight',
+    'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen',
+    'Seventeen', 'Eighteen', 'Nineteen', 'Twenty'];
+
+  function updateCountryCount(count) {
+    var word = numberWords[count] || String(count);
+    document.querySelectorAll('.country-count').forEach(function (el) {
+      el.textContent = word;
+    });
+    var lowerWord = word.toLowerCase();
+    mapEl.setAttribute('aria-label', 'Interactive map showing ' + lowerWord + ' countries visited so far');
+  }
+
   function renderMap(stops) {
     if (!stops.length) return;
+    updateCountryCount(stops.length);
+
     var map = L.map('travel-map', { scrollWheelZoom: false }).setView([20, 20], 2);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
